@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/project-finances/static/css/main.7acaea2f.css",
-    "main.js": "/project-finances/static/js/main.9bf121df.js",
+    "main.js": "/project-finances/static/js/main.e53a43d2.js",
     "index.html": "/project-finances/index.html",
     "main.7acaea2f.css.map": "/project-finances/static/css/main.7acaea2f.css.map",
-    "main.9bf121df.js.map": "/project-finances/static/js/main.9bf121df.js.map"
+    "main.e53a43d2.js.map": "/project-finances/static/js/main.e53a43d2.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.9bf121df.js"
+    "static/js/main.e53a43d2.js"
   ]
 }
