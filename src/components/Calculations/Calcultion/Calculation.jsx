@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
+import { getIncomes } from '../../../redux/incomes/selectors';
 
 export const Calculation = () => {
 
-    const incomes = useSelector((state)=>state.incomes)
+    const incomes = useSelector(getIncomes)
 
     return (
         <>
