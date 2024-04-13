@@ -1,5 +1,5 @@
 export const Theme = {
-    colors: {
+  colors: {
         black: '#000000',
         red: '#E7192E',
         green: '#407946',
@@ -7,7 +7,7 @@ export const Theme = {
         white: '#fff',
         whiteBackground: '#E0E5EB',
         greyHeading: '#F5F6FB',
-        greyBackground:' #F2F5FC',
+        greyBackground: '#F2F5FC',
         darkOrange: '#FF751D',
         lightOrange: '#FFDAC0',
         grey: '#52555F',
@@ -24,7 +24,7 @@ export const Theme = {
     m: '16px',
     l: '34px',
   },
-    fontWeights: {
+  fontWeights: {
       extraLight: 200,
       light: 300,
       normal: 400,
