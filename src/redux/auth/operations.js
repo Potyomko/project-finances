@@ -1,0 +1,42 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios'
+
+const setAuthHeader = token => {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthHeader = () => {
+    axios.defaults.headers.common.Authorization = '';
+};
+
+export const login = createAsyncThunk('auth/login', async (body, thunkAPI) => {
+    try {
+        const res = await axios.post(`http://localhost:5000/login`, body)
+        setAuthHeader(res.data.token);
+        if(res.data.redirectTo){
+            window.location.href = res.data.redirectTo
+        }
+        return res.data;
+    } catch (error) {
+        throw new Error(error)
+    }
+})
+
+export const register = createAsyncThunk('auth/register', async (body, thunkAPI) => {
+    try {
+        const res = await axios.post(`http://localhost:5000/register`, body)
+        return res.data;
+    } catch (error) {
+        throw new Error(error)
+    }
+})
+
+export const logout = createAsyncThunk('auth/logout', async (thunkAPI) => {
+    try {
+        const res = await axios.post(`http://localhost:5000logout`)
+        clearAuthHeader()
+        return res.data
+    } catch (error) {
+        thunkAPI.rejectWithValue(error.message);
+    }
+})
