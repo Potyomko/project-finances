@@ -7,6 +7,7 @@ const { addIncome, deleteIncome } = require('./controllers/IncomesController')
 const { addSpending, deleteSpending } = require('./controllers/SpendingsController')
 
 const app = express()
+
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())

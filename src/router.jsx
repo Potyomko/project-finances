@@ -1,16 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
 import { App } from "./components/App"
+import LoginPage from "components/Auth/LoginPage/LoginPage";
+import RegisterPage from "components/Auth/RegisterPage/RegistrationPage";
+import PrivateRoute from "components/PrivateRoute";
+import HomePage from "components/HomePage/HomePage";
 
 export const router = createBrowserRouter(
     [
         {
             path: '/',
-            element: <App/>,
+            element: <App />,
             //errorElement: ?
             children: [
                 {
-                    element: '', //Home page
+                    element: <PrivateRoute component={HomePage} redirectTo={'login'} />,
                     index: true
+                },
+                {
+                    path: '/login',
+                    element: <LoginPage />
+                },
+                {
+                    path: '/register',
+                    element: <RegisterPage />
                 },
                 {
                     path: '/user-finances',
@@ -41,6 +53,6 @@ export const router = createBrowserRouter(
                     ]
                 }
             ]
-        }
+        },
     ]
 )
