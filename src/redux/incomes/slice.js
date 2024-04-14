@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const slice = createSlice({
     name: 'incomesSlice',
     initialState: {
-        incomes: [],
+        incomes: 10000,
         error: null,
         isLoading: false,
     }
