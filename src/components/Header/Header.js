@@ -119,9 +119,11 @@ export default function Header(){
                     <StyledLink to={'/'} >INVESTIQ</StyledLink>
                 </LogoWrapper>
                 <LogoutWrapper>
-                    <Username>{user.username}</Username>
                     {isLoggedIn && (
-                        <LogoutButton onClick={handleButtonClick}>Logout</LogoutButton>
+                        <>
+                            <Username>{user.username}</Username>
+                            <LogoutButton onClick={handleButtonClick}>Logout</LogoutButton>
+                        </>
                     )}
                 </LogoutWrapper>
             </StyledHeader>
