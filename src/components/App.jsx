@@ -1,4 +1,3 @@
-import { GlobalStyle } from "./GlobalStyle";
 import Header from "./Header/Header";
 import { Outlet } from "react-router-dom"
 import { Calculation } from "./Calculations/Calcultion/Calculation";
@@ -11,7 +10,6 @@ export const App = () => {
       <Outlet />
       <Calculation/>
       <Balance/>
-    </div>
     </>
   );
 };
