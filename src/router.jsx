@@ -4,6 +4,9 @@ import LoginPage from "components/Auth/LoginPage/LoginPage";
 import RegisterPage from "components/Auth/RegisterPage/RegistrationPage";
 import PrivateRoute from "components/PrivateRoute";
 import HomePage from "components/HomePage/HomePage";
+import FinancePage from "components/Finances/FinancePage/FinancePage";
+import Incomes from "components/Finances/Incomes/Incomes";
+import Spendings from "components/Finances/Spendings/Spendings";
 
 export const router = createBrowserRouter(
     [
@@ -13,7 +16,7 @@ export const router = createBrowserRouter(
             //errorElement: ?
             children: [
                 {
-                    element: <PrivateRoute component={HomePage} redirectTo={'login'} />,
+                    element: <PrivateRoute component={HomePage} redirectTo={'/login'} />,
                     index: true
                 },
                 {
@@ -26,15 +29,15 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: '/user-finances',
-                    element: '', //A page with spendings and incomes
+                    element: <PrivateRoute component={FinancePage} redirectTo={'/login'} />,
                     children: [
                         {
                             path: '/user-finances/incomes',
-                            element: '', //An element with incomes
+                            element: <PrivateRoute component={Incomes} redirectTo={'/login'} />,
                         },
                         {
                             path: '/user-finances/spendings',
-                            element: '', //An element with spendings
+                            element: <PrivateRoute component={Spendings} redirectTo={'/login'} />,
                         }
                     ]
                 },
