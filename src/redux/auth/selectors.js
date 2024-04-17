@@ -5,3 +5,7 @@ export const selectIsLoggedIn = state => {
 export const selectUser = state => {
     return state.auth.user
 }
+
+export const selectError = state => {
+    return state.auth.error
+}

@@ -25,6 +25,9 @@ export const login = createAsyncThunk('auth/login', async (body, thunkAPI) => {
 export const register = createAsyncThunk('auth/register', async (body, thunkAPI) => {
     try {
         const res = await axios.post(`http://localhost:5000/register`, body)
+        if(res.data.redirectTo){
+            window.location.href = res.data.redirectTo
+        }
         return res.data;
     } catch (error) {
         throw new Error(error)
@@ -33,10 +36,10 @@ export const register = createAsyncThunk('auth/register', async (body, thunkAPI)
 
 export const logout = createAsyncThunk('auth/logout', async (thunkAPI) => {
     try {
-        const res = await axios.post(`http://localhost:5000logout`)
+        const res = await axios.get(`http://localhost:5000/logout`)
         clearAuthHeader()
         return res.data
     } catch (error) {
-        thunkAPI.rejectWithValue(error.message);
+        throw new Error(error)
     }
 })

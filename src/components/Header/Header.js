@@ -122,7 +122,7 @@ export default function Header(){
                     {isLoggedIn && (
                         <>
                             <Username>{user.username}</Username>
-                            <LogoutButton onClick={handleButtonClick}>Logout</LogoutButton>
+                            <LogoutButton onClick={handleButtonClick}>Вийти</LogoutButton>
                         </>
                     )}
                 </LogoutWrapper>
