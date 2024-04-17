@@ -11,7 +11,7 @@ const register = async (req, res) => {
     try {
 
         await user.save()
-        res.status(201).json({user: rest})
+        res.status(201).json({user: rest, redirectTo: '/login'})
 
     } catch (error) {
         if (error.code === 11000 && error.keyPattern && error.keyValue) {
@@ -49,7 +49,7 @@ const login = async (req, res) => {
         res.cookie('access_token', token, { httpOnly: true, expires: expirationDate }).status(200).json({
             user: rest,
             token,
-            redirectTo: '/'
+            redirectTo: '/user-finances/spendings'
         })
 
     } catch (error) {

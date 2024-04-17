@@ -3,8 +3,12 @@ import heroBg from "../../../images/heroBg.png"
 import heroBg2 from "../../../images/heroBg2.png"
 import { Link } from "react-router-dom"
 import { FcGoogle } from "react-icons/fc";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { register } from "../../../redux/auth/operations";
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { selectError } from "../../../redux/auth/selectors";
+import { useEffect } from "react";
 
 const HeroSection = styled.div`
     background-color: #F5F6FB;
@@ -185,18 +189,51 @@ const GoogleButton = styled.button`
 export default function RegisterPage(){
 
     const dispatch = useDispatch()
+    const error = useSelector(selectError)
+
+    const formNotify = () => toast.error('Заповніть всі поля!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+    });
 
     const handleFormSubmit = (ev) => {
         ev.preventDefault();
 
         const form = ev.currentTarget
+        if(form.elements.email.value === '' && form.elements.password.value === '' && form.elements.username.value === ''){
+            return formNotify()
+        }
         dispatch(register({
             username: form.elements.username.value,
             email: form.elements.email.value,
             password: form.elements.password.value,
         }))
-        form.reset()
     }
+
+    const errorNotify = () => toast.error('Цей email вже зайнятий!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+    });
+
+    useEffect(() => {
+        if (error !== null) {
+            errorNotify();
+        }
+    }, [error]);
 
     return(
         <Wrapper>
@@ -223,6 +260,7 @@ export default function RegisterPage(){
                     </form>
                 </FormWrapper>
             </HeroSection>
+            <ToastContainer position="top-right" />
         </Wrapper>
     )
 }
