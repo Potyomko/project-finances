@@ -207,7 +207,7 @@ export default function LoginPage(){
         ev.preventDefault();
 
         const form = ev.currentTarget
-        if(form.elements.email.value === '' && form.elements.password.value === ''){
+        if(form.elements.email.value === '' || form.elements.password.value === ''){
             return formNotify()
         }
         dispatch(login({
