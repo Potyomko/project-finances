@@ -7,6 +7,7 @@ import HomePage from "components/HomePage/HomePage";
 import FinancePage from "components/Finances/FinancePage/FinancePage";
 import Incomes from "components/Finances/Incomes/Incomes";
 import Spendings from "components/Finances/Spendings/Spendings";
+import { Calculation } from "components/Calculations/Calcultion/Calculation";
 
 export const router = createBrowserRouter(
     [
@@ -43,7 +44,7 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: '/user-finances-report',
-                    element: '', //An element with user's report
+                    element: <Calculation/>,
                     children: [
                         {
                             path: '/user-finances-report/incomes',

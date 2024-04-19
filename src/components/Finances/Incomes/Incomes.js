@@ -420,6 +420,7 @@ export default function Incomes(){
     }, [incomes]);
 
     return(
+        <p>Incomes</p>
         <Wrapper>
             <AddIncome>
                 <DateWrapper>
@@ -490,5 +491,6 @@ export default function Incomes(){
             </IncomesContainer>
             <ToastContainer />
         </Wrapper>
+
     )
 }
