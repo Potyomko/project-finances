@@ -1,5 +1,23 @@
 const User = require('../models/User')
 
+const getIncomes = async (req, res) => {
+    const { email } = req.body
+
+    const user = await User.findOne({ email })
+    if(!user){
+        return res.status(400).json({message: "Не існує такого користувача"})
+    }
+
+    try {
+
+        const incomes = user.incomes;
+        res.status(200).json({incomes})
+
+    } catch (error) {
+        return res.status(500).json({message: "Не вдалось отримати доходи"})
+    }
+}
+
 const addIncome = async (req, res) => {
     const { amount, category, description, date, email } = req.body
 
@@ -16,11 +34,12 @@ const addIncome = async (req, res) => {
             description,
             date,
         })
-        user.balance += amount        
+        user.balance += amount
         await user.save()
         
-        const { password, ...rest } = user._doc;
-        res.status(200).json({user: rest})
+        const incomes = user.incomes
+        const { password, ...rest } = user._doc
+        res.status(200).json({incomes, user: rest})
 
     } catch (error) {
         return res.status(500).json({message: "Не вдалось додати дохід"})
@@ -48,8 +67,9 @@ const deleteIncome = async (req, res) => {
         user.balance -= incomeToDelete.amount
         await user.save()
 
-        const { password, ...rest } = user._doc;
-        res.status(200).json(rest)
+        const incomes = user.incomes
+        const { password, ...rest } = user._doc
+        res.status(200).json({incomes, user: rest})
 
     } catch (error) {
         return res.status(500).json({message: "Не вдалось видалити дохід"})
@@ -57,6 +77,7 @@ const deleteIncome = async (req, res) => {
 }
 
 module.exports = {
+    getIncomes,
     addIncome,
     deleteIncome
 }
