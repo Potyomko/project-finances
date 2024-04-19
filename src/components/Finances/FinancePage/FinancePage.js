@@ -4,13 +4,6 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import financebg from "../../../images/financebg.png"
 import bgcolor from "../../../images/bgcolor.png"
 
-const BalanceWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-`;
-
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -21,9 +14,16 @@ const Wrapper = styled.div`
     background-position-y: 0, 90%;
     padding-top: 40px;
     width: 1280px;
-    height: calc(100vh - 56px);
+    min-height: 850px;
     margin-left: auto;
     margin-right: auto;
+`;
+
+const BalanceWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
 `;
 
 const Finances = styled.div`

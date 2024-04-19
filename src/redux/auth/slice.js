@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { login, logout, register } from "./operations"
+import { errorUpdate, login, logout, register } from "./operations"
+import { addIncome, deleteIncome } from "../../redux/incomes/operations"
+import { addSpending, deleteSpending } from "../../redux/spendings/operations"
 
 const slice = createSlice({
     name: 'authSlice',
@@ -8,6 +10,11 @@ const slice = createSlice({
         isLoggedIn: false,
         error: null,
         token: null,
+    },
+    reducers: {
+        errorUpdate(state){
+          return state.error = null
+        }
     },
     extraReducers(builder){
         builder
@@ -36,7 +43,25 @@ const slice = createSlice({
         .addCase(logout.rejected, (state, action) => {
             state.error = action.error;
         })
+        .addCase(errorUpdate.fulfilled, (state) => {
+            state.error = null;
+        })
+        .addCase(addIncome.fulfilled, (state, action) => {
+            state.error = null;
+            state.user = action.payload.user
+        })
+        .addCase(deleteIncome.fulfilled, (state, action) => {
+            state.error = null;
+            state.user = action.payload.user
+        })
+        .addCase(addSpending.fulfilled, (state, action) => {
+            state.error = null;
+            state.user = action.payload.user
+        })
+        .addCase(deleteSpending.fulfilled, (state, action) => {
+            state.error = null;
+            state.user = action.payload.user
+        })
     }
 })
-
 export const authReducer = slice.reducer

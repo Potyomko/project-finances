@@ -207,7 +207,7 @@ export default function RegisterPage(){
         ev.preventDefault();
 
         const form = ev.currentTarget
-        if(form.elements.email.value === '' && form.elements.password.value === '' && form.elements.username.value === ''){
+        if(form.elements.email.value === '' || form.elements.password.value === '' || form.elements.username.value === ''){
             return formNotify()
         }
         dispatch(register({
