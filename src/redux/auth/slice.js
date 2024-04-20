@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { errorUpdate, login, logout, register } from "./operations"
 import { addIncome, deleteIncome } from "../../redux/incomes/operations"
 import { addSpending, deleteSpending } from "../../redux/spendings/operations"
+import { changeBalance } from "../../redux/balance/operations"
 
 const slice = createSlice({
     name: 'authSlice',
@@ -59,6 +60,10 @@ const slice = createSlice({
             state.user = action.payload.user
         })
         .addCase(deleteSpending.fulfilled, (state, action) => {
+            state.error = null;
+            state.user = action.payload.user
+        })
+        .addCase(changeBalance.fulfilled, (state, action) => {
             state.error = null;
             state.user = action.payload.user
         })

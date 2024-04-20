@@ -7,7 +7,7 @@ import HomePage from "components/HomePage/HomePage";
 import FinancePage from "components/Finances/FinancePage/FinancePage";
 import Incomes from "components/Finances/Incomes/Incomes";
 import Spendings from "components/Finances/Spendings/Spendings";
-import { Calculation } from "components/Calculations/Calcultion/Calculation";
+import { Calculation } from "components/Calculations/Calculation/Calculation";
 
 export const router = createBrowserRouter(
     [

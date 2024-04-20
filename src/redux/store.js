@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import { authReducer } from "./auth/slice";
 import { incomesReducer } from "./incomes/slice";
 import { spendingsReducer } from "./spendings/slice";
+import { balanceReducer } from "./balance/slice";
 
 const persistConfig = {
   key: 'auth',
@@ -23,6 +24,7 @@ export const store = configureStore({
   reducer: {
     incomes: incomesReducer,
     spendings: spendingsReducer,
+    balance: balanceReducer,
     auth: persistedAuthReducer,
   },
   middleware,
