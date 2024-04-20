@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const { register, login, logout } = require('./controllers/AuthController')
 const { addIncome, deleteIncome, getIncomes } = require('./controllers/IncomesController')
 const { addSpending, deleteSpending, getSpendings } = require('./controllers/SpendingsController')
+const { changeBalance, getBalance } = require('./controllers/BalanceController')
 
 const app = express()
 
@@ -25,6 +26,9 @@ app.post('/deleteIncome/:id', deleteIncome)
 app.post('/getSpendings', getSpendings)
 app.post('/addSpending', addSpending)
 app.post('/deleteSpending/:id', deleteSpending)
+
+app.post('/getBalance', getBalance)
+app.post('/changeBalance', changeBalance)
 
 app.listen(5000, () => {
   console.log(`Server is running on port ${5000}`);

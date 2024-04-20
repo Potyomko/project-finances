@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { addIncome, deleteIncome, getIncomes } from "./operations"
+import { logout } from "../../redux/auth/operations";
 
 const slice = createSlice({
     name: 'incomesSlice',
@@ -48,6 +49,11 @@ const slice = createSlice({
             .addCase(deleteIncome.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.error;
+            })
+            .addCase(logout.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.incomes = []
             })
     }
 })
