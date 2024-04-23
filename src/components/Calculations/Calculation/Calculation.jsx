@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getIncomes, getSpendings } from '../../../redux/incomes/selectors';
-import { Box } from './Calculation.syled';
+import { Box, IncomesNum, SpendingsNum } from './Calculation.syled';
 
 export const Calculation = () => {
 
@@ -10,8 +10,9 @@ export const Calculation = () => {
     return (
         <>
             <Box>
-                <p>{spendings}</p>
-                <p>{incomes}</p>
+                <p>Витрати: - <SpendingsNum>{spendings}</SpendingsNum></p>
+                <span>|</span>
+                <p>Доходи: + <IncomesNum>{incomes}</IncomesNum></p>
             </Box>
         </>
     )
