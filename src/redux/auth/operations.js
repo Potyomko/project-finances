@@ -43,3 +43,11 @@ export const logout = createAsyncThunk('auth/logout', async (thunkAPI) => {
         throw new Error(error)
     }
 })
+
+export const errorUpdate = createAsyncThunk('auth/errorUpdate', async (thunkAPI) => {
+    try {
+        return true
+    } catch (error) {
+        throw new Error(error)
+    }
+})
