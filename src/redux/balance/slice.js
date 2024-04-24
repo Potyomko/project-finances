@@ -5,7 +5,7 @@ import { logout } from "../../redux/auth/operations";
 const slice = createSlice({
     name: 'balanceSlice',
     initialState: {
-        balance: 0,
+        balance: 100, 
         error: null,
         isLoading: false,
     },
