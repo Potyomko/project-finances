@@ -44,7 +44,7 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: '/user-finances-report',
-                    element: <Calculation/>,
+                    element: <PrivateRoute component={Calculation} redirectTo={'/login'} />,
                     children: [
                         {
                             path: '/user-finances-report/incomes',
