@@ -5,8 +5,7 @@ export const Box = styled.div`
 display: flex;
 
 position: absolute;
-width: 1060px;
-height: 50px;
+
 left: 110px;
 top: 170px;
 
@@ -21,16 +20,12 @@ export const IncomesNum = styled.span`
 
 /* + 45 000.00 грн. */
 
-width: 120px;
-height: 20px;
-left: 732px;
-top: 185px;
+margin-left: 14px;
 
 font-family: 'Roboto';
 font-style: normal;
 font-weight: 700;
 font-size: 14px;
-display: flex;
 align-items: center;
 letter-spacing: 0.04em;
 
@@ -42,21 +37,59 @@ export const SpendingsNum = styled.span`
 
 /* - 18 000.00 грн. */
 
-width: 112px;
-height: 20px;
-left: 507px;
-top: 185px;
+margin-left: 14px;
 
 font-family: 'Roboto';
 font-style: normal;
 font-weight: 700;
 font-size: 14px;
 line-height: 16px;
-display: flex;
 align-items: center;
 letter-spacing: 0.04em;
 
 color: #E53935;
 
+
+`
+
+export const SpendingsP = styled.p`
+
+margin: 15px 20px 15px 319px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 16px;
+align-items: center;
+
+color: #52555F;
+
+`
+
+export const IncomesP = styled.p`
+
+margin: 15px 319px 15px 20px;
+
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 16px;
+align-items: center;
+
+color: #52555F;
+
+`
+
+export const Stick = styled.span`
+
+margin: 7px auto 7px auto;
+
+width: 0px;
+height: 36px;
+
+border: 1px solid #E0E5EB;
 
 `
