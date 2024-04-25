@@ -1,3 +1,1 @@
-export const selectBalance = state => {
-    return state.balance.balance;
-}
+export const selectBalance = state => state.balance.balance;
