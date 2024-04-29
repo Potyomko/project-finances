@@ -18,7 +18,7 @@ import {
   ExpenseItem,
   AmountContainer,
   AddSpending,
-} from '../CSS/E.styled';
+} from '../Spendings/Spending.styled';
 
 import calendar from '../../../images/calendar.png'
 import deleteIcon from "../../../images/delete.png"
