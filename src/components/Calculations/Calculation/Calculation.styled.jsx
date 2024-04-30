@@ -4,10 +4,15 @@ export const Box = styled.div`
 
 display: flex;
 
-position: absolute;
+// position: absolute;
 
-left: 110px;
-top: 170px;
+width: 1060px;
+
+// align-items: center;
+
+margin: 24px auto 30px auto;
+// margin-left: auto;
+// margin-right: auto;
 
 background: #FFFFFF;
 /* shadow 1 */
@@ -54,7 +59,7 @@ color: #E53935;
 
 export const SpendingsP = styled.p`
 
-margin: 15px 20px 15px 319px;
+margin: 15px 0px 15px 319px;
 
 font-family: 'Roboto';
 font-style: normal;
@@ -69,7 +74,7 @@ color: #52555F;
 
 export const IncomesP = styled.p`
 
-margin: 15px 319px 15px 20px;
+margin: 15px 319px 15px 0px;
 
 
 font-family: 'Roboto';
@@ -85,7 +90,7 @@ color: #52555F;
 
 export const Stick = styled.span`
 
-margin: 7px auto 7px auto;
+margin: 7px 20px 7px 20px;
 
 width: 0px;
 height: 36px;
