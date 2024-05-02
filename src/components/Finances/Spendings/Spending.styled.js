@@ -50,7 +50,7 @@ export const FormContainer = styled.div`
 
 export const Description = styled.input`
     width: 300px;
-    height: 24px;
+    height: 44px;
     border: none;
     outline: none;
     padding: 10px 20px;
@@ -166,12 +166,12 @@ export const ExpenseHeader = styled.div`
     border-radius: 15px 15px 0 0;
     background-color: #F5F6FB;
     padding: 0 20px;
-    margin-bottom: 10px;
-    width: 740px;
+    /* margin-bottom: 10px; */
+    width: 800px;
 `;
 
 export const ExpenseItem = styled.li`
-  width: calc(100% - 40px);
+  /* width: calc(100% - 40px); */
   height: 40px;
   display: flex;
   align-items: center;
@@ -195,9 +195,9 @@ export const ExpenseItem = styled.li`
     justify-content: flex-end;
   }
 
-  &:hover {
+  /* &:hover {
     background-color: #F5F6FB;
-  }
+  } */
 `;
 
 export const AmountContainer = styled.p`
@@ -252,13 +252,14 @@ export const ExpenseWrapper = styled.div`
     width: 760px;
     height: auto;
     border: 2px solid #F5F6FB;
-    border-radius: 16px;
+    border-radius: 16px 16px 0px 0px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-right: 260px;
 `;
 
 export const SpendingContainer = styled.ul`
@@ -269,16 +270,21 @@ export const SpendingContainer = styled.ul`
   padding: 0;
   width: 100%;
   
-  &::-webkit-scrollbar {
-    width: 12px;
-    border-radius: 6px;
-  }
+  &::-webkit-scrollbar{
+        padding-top:5px;
+        width: 7px;
+        cursor: pointer;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #FF751D;
-    border-radius: 6px;
-  }
+    &::-webkit-scrollbar-track{
+        background: #fff;
+        border-radius: 25px;
+        cursor: pointer;
+    }
 
-  scrollbar-width: thin;
-  scrollbar-color: #FF751D transparent;
-`;
+    &::-webkit-scrollbar-thumb{
+        background: #FF751D;
+        border-radius: 25px;
+        cursor: pointer;
+    }
+`

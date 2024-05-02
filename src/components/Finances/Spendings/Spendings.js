@@ -18,10 +18,12 @@ import {
   ExpenseItem,
   AmountContainer,
   AddSpending,
-} from '../CSS/E.styled';
+} from './Spending.styled.js';
+
 
 import calendar from '../../../images/calendar.png'
 import deleteIcon from "../../../images/delete.png"
+import s from './Spending.module.css'
 
 function Spendings({ addExpense }) {
   const [description, setDescription] = useState('');
@@ -122,10 +124,10 @@ function Spendings({ addExpense }) {
       <SpendingsContainer>
         <ExpenseWrapper>
           <ExpenseHeader>
-            <p>ДАТА</p>
-            <p>ОПИС</p>
-            <p>КАТЕГОРІЯ</p>
-            <p>СУМА</p>
+            <p className={s.data}>ДАТА</p>
+            <p className={s.desc}>ОПИС</p>
+            <p className={s.category}>КАТЕГОРІЯ</p>
+            <p className={s.sum}>СУМА</p>
           </ExpenseHeader>
           <SpendingContainer>
             {rows.map((row, index) => (
@@ -158,3 +160,21 @@ function Spendings({ addExpense }) {
 }
 
 export default Spendings;
+
+
+
+
+
+// import ExpensesList from '../components/Spendings/ExpensesList';
+
+//   const [expenses, setExpenses] = useState([]);
+
+//   const addExpense = (expense) => {
+//     setExpenses([...expenses, expense]);
+//   };
+
+//   const deleteAllExpenses = () => {
+//     setExpenses([]);
+//   };
+
+//   <ExpensesList expenses={expenses} addExpense={addExpense} deleteAllExpenses={deleteAllExpenses} />
