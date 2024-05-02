@@ -4,15 +4,11 @@ export const Box = styled.div`
 
 display: flex;
 
-// position: absolute;
-
 width: 1060px;
 
-// align-items: center;
+justify-content: center;
 
 margin: 24px auto 30px auto;
-// margin-left: auto;
-// margin-right: auto;
 
 background: #FFFFFF;
 /* shadow 1 */
