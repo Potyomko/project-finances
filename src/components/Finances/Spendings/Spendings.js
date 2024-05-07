@@ -20,7 +20,6 @@ import {
   AddSpending,
 } from './Spending.styled.js';
 
-
 import calendar from '../../../images/calendar.png'
 import deleteIcon from "../../../images/delete.png"
 import s from './Spending.module.css'
