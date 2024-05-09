@@ -71,6 +71,8 @@ const Container = styled.div`
 
 export default function FinancePage(){
 
+    const { pathname } = useLocation()
+
     return(
         <Wrapper>
             <BalanceWrapper>
