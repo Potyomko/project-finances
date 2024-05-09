@@ -18,13 +18,20 @@ import {
   ExpenseItem,
   AmountContainer,
   AddSpending,
+  DeleteIcon
 } from './Spending.styled.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import calendar from '../../../images/calendar.png'
 import deleteIcon from "../../../images/delete.png"
 import s from './Spending.module.css'
+import { addSpending } from '../../../redux/spendings/operations.js';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Spendings({ addExpense }) {
+  const dispatch = useDispatch();
+  const spendings = useSelector(state => state.spendings);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
@@ -32,17 +39,23 @@ function Spendings({ addExpense }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!description || !category || !amount) {
+      toast.error('Будь ласка, заповніть поля');
+      return;
+    }
+  
     const newExpense = {
       date: new Date().toLocaleDateString(),
       description,
       category,
       amount,
     };
-    addExpense(newExpense);
+  
+    dispatch(addSpending(newExpense));
     setDescription('');
     setCategory('');
     setAmount('');
-
+  
     const firstEmptyRowIndex = rows.findIndex(row => row === null);
     if (firstEmptyRowIndex !== -1) {
       const updatedRows = [...rows];
@@ -50,6 +63,7 @@ function Spendings({ addExpense }) {
       setRows(updatedRows);
     }
   };
+  
 
   const [currentDate, setCurrentDate] = useState(new Date());
   const formattedDate = `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()}`;
@@ -133,13 +147,13 @@ function Spendings({ addExpense }) {
               <ExpenseItem key={index}>
                 {row !== null ? (
                   <>
-                    <p>{row.date}</p>
-                    <p>{row.description}</p>
-                    <p>{row.category}</p>
-                    <AmountContainer>-{row.amount}грн.</AmountContainer>
-                    <button onClick={() => deleteExpense(index)}>
+                    <p className={s.data1}>{row.date}</p>
+                    <p className={s.desc1}>{row.description}</p>
+                    <p className={s.category1}>{row.category}</p>
+                    <AmountContainer className={s.sum1}>-{row.amount}грн.</AmountContainer>
+                    <p><DeleteIcon onClick={() => deleteExpense(index)}>
                       <img src={deleteIcon} alt="Видалити" />
-                    </button>
+                    </DeleteIcon></p>
                   </>
                 ) : (
                   <>
@@ -154,26 +168,9 @@ function Spendings({ addExpense }) {
           </SpendingContainer>
         </ExpenseWrapper>
       </SpendingsContainer>
+      <ToastContainer />
     </Wrapper>
   );
 }
 
 export default Spendings;
-
-
-
-
-
-// import ExpensesList from '../components/Spendings/ExpensesList';
-
-//   const [expenses, setExpenses] = useState([]);
-
-//   const addExpense = (expense) => {
-//     setExpenses([...expenses, expense]);
-//   };
-
-//   const deleteAllExpenses = () => {
-//     setExpenses([]);
-//   };
-
-//   <ExpensesList expenses={expenses} addExpense={addExpense} deleteAllExpenses={deleteAllExpenses} />
