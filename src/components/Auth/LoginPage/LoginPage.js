@@ -99,7 +99,7 @@ const StyledInput = styled.input`
     width: 265px;
     height: 52px;
     border-radius: 30px;
-    padding-left: 30px;
+    padding: 0 30px;
     border: none;
     background: #F5F6FB;
     margin-bottom: 40px;
@@ -244,8 +244,8 @@ export default function LoginPage(){
                 <FormWrapper>
                     <StyledParagraph>Ви можете авторизуватися за допомогою акаунта Google</StyledParagraph>
                     <GoogleButton><FcGoogle />Google</GoogleButton>
-                    <StyledParagraph>Або увійти за допомогою ел. пошти та праолю після реєстрації</StyledParagraph>
-                    <form onSubmit={handleFormSubmit}>
+                    <StyledParagraph>Або увійти за допомогою ел. пошти та паролю після реєстрації</StyledParagraph>
+                    <form>
                         <StyledLabel>Електронна пошта:</StyledLabel>
                         <StyledInput name="email" placeholder="your@email" type="email" />
                         <StyledLabel>Пароль:</StyledLabel>

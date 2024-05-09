@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { changeBalance, getBalance } from "./operations";
 import { logout } from "../../redux/auth/operations";
+import { addIncome, deleteIncome } from "../../redux/incomes/operations";
 
 const slice = createSlice({
     name: 'balanceSlice',
@@ -41,6 +42,32 @@ const slice = createSlice({
                 state.isLoading = false;
                 state.error = null;
                 state.balance = 0;
+            })
+            .addCase(addIncome.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(addIncome.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.balance = action.payload.user.balance
+            })
+            .addCase(addIncome.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error;
+            })
+            .addCase(deleteIncome.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(deleteIncome.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.balance = action.payload.user.balance
+            })
+            .addCase(deleteIncome.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error;
             })
     }
 })
