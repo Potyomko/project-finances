@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import calculator from '../../../images/calculator.png';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Wrapper = styled.div`
     display: flex;
@@ -14,6 +15,18 @@ export const AddSpending = styled.div`
     align-items: center;
     gap: 25px;
     margin-bottom: 60px;
+`;
+
+export const DeleteIcon = styled.span`
+width: 32px;
+height: 32px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #fff;
+border: none;
+border-radius: 50%;
+cursor: pointer;
 `;
 
 export const DateContainer = styled.div`
