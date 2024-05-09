@@ -34,7 +34,7 @@ export const register = createAsyncThunk('auth/register', async (body, thunkAPI)
     }
 })
 
-export const logout = createAsyncThunk('auth/logout', async (thunkAPI) => {
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     try {
         const res = await axios.get(`http://localhost:5000/logout`)
         clearAuthHeader()
@@ -44,9 +44,9 @@ export const logout = createAsyncThunk('auth/logout', async (thunkAPI) => {
     }
 })
 
-export const errorUpdate = createAsyncThunk('auth/errorUpdate', async (thunkAPI) => {
+export const errorUpdate = createAsyncThunk('auth/errorUpdate', async (_, thunkAPI) => {
     try {
-        return true
+        return {success: true}
     } catch (error) {
         throw new Error(error)
     }

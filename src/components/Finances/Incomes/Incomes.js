@@ -80,6 +80,7 @@ const Select = styled.select`
     line-height: 14px;
     letter-spacing: 0.5px;
     text-align: center;
+    cursor: pointer;
 `;
 
 const StyledOption = styled.option`
@@ -338,7 +339,7 @@ export default function Incomes(){
     const dispatch = useDispatch()
     const incomes = useSelector(getIncomes)
 
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState(undefined)
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState('')
     const [summary, setSummary] = useState([])
@@ -363,7 +364,7 @@ export default function Incomes(){
     const handleFormSubmit = (ev) => {
         ev.preventDefault();
         
-        if(amount === 0 || description === '' || category === ''){
+        if(amount === undefined || description === '' || category === ''){
             return formNotify()
         }
         dispatch(addIncome({
@@ -372,7 +373,7 @@ export default function Incomes(){
             description: description,
             category: category,
         }))
-        setAmount(0)
+        setAmount(undefined)
         setDescription('')
         setCategory('')
     }
@@ -443,7 +444,7 @@ export default function Incomes(){
                             <StyledOption value="Навчання">Навчання</StyledOption>
                             <StyledOption value="Інше">Інше</StyledOption>
                         </Select>
-                        <Amount placeholder="0.00" name="amount" type="number" value={parseFloat(amount)} onChange={(ev) => setAmount(parseFloat(ev.target.value))} />
+                        <Amount placeholder="0.00" name="amount" type="number" value={amount} onChange={(ev) => setAmount(parseFloat(ev.target.value))} />
                     </StyledForm>
                     <ButtonsWrapper>
                         <AddButton type="submit">Ввести</AddButton>

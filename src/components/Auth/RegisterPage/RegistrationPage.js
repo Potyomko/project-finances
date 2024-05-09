@@ -2,7 +2,6 @@ import { styled } from "styled-components"
 import heroBg from "../../../images/heroBg.png"
 import heroBg2 from "../../../images/heroBg2.png"
 import { Link } from "react-router-dom"
-import { FcGoogle } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux"
 import { register } from "../../../redux/auth/operations";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
@@ -66,8 +65,8 @@ const FormWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
     width: 436px;
-    height: 625px;
     position: absolute;
     background: #fff;
     border-radius: 20px;
@@ -99,7 +98,7 @@ const StyledInput = styled.input`
     width: 265px;
     height: 52px;
     border-radius: 30px;
-    padding-left: 30px;
+    padding: 0 30px;
     border: none;
     background: #F5F6FB;
     margin-bottom: 30px;
@@ -161,31 +160,6 @@ const StyledLink = styled(Link)`
     cursor: pointer;
 `;
 
-const GoogleButton = styled.button`
-    width: 122px;
-    height: 40px;
-    border-radius: 26px;
-    box-shadow: 1px 2px 3px 0px #AAB2C533;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    color: #000;
-    font-family: Roboto, sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.2px;
-    margin-bottom: 20px;
-
-    svg{
-        width: 18px;
-        height: 18px;
-    }
-`;
-
 export default function RegisterPage(){
 
     const dispatch = useDispatch()
@@ -243,9 +217,7 @@ export default function RegisterPage(){
                     <SubTitle>SMART FINANCE</SubTitle>
                 </TitleWrapper>
                 <FormWrapper>
-                    <StyledParagraph>Ви можете авторизуватися за допомогою акаунта Google</StyledParagraph>
-                    <GoogleButton><FcGoogle />Google</GoogleButton>
-                    <StyledParagraph>Або зареєструватись за допомогою ел. пошти та праолю</StyledParagraph>
+                    <StyledParagraph>Зареєструватись за допомогою ел. пошти та паролю</StyledParagraph>
                     <form onSubmit={handleFormSubmit}>
                         <StyledLabel>Ім'я:</StyledLabel>
                         <StyledInput name="username" placeholder="name" type="text" />
