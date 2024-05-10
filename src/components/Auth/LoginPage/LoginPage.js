@@ -245,7 +245,7 @@ export default function LoginPage(){
                     <StyledParagraph>Ви можете авторизуватися за допомогою акаунта Google</StyledParagraph>
                     <GoogleButton><FcGoogle />Google</GoogleButton>
                     <StyledParagraph>Або увійти за допомогою ел. пошти та паролю після реєстрації</StyledParagraph>
-                    <form>
+                    <form onSubmit={handleFormSubmit}>
                         <StyledLabel>Електронна пошта:</StyledLabel>
                         <StyledInput name="email" placeholder="your@email" type="email" />
                         <StyledLabel>Пароль:</StyledLabel>

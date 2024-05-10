@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const Box = styled.div`
 
-display: flex;
-
 position: absolute;
-
+width: 1060px;
+height: 50px;
+display: flex;
+position: absolute;
 left: 110px;
 top: 170px;
 
@@ -91,5 +92,4 @@ width: 0px;
 height: 36px;
 
 border: 1px solid #E0E5EB;
-
 `
