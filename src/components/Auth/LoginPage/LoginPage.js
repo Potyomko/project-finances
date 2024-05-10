@@ -9,6 +9,8 @@ import { selectError } from "../../../redux/auth/selectors";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react";
+import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const HeroSection = styled.div`
     background-color: #F5F6FB;
@@ -161,31 +163,6 @@ const StyledLink = styled(Link)`
     cursor: pointer;
 `;
 
-const GoogleButton = styled.button`
-    width: 122px;
-    height: 40px;
-    border-radius: 26px;
-    box-shadow: 1px 2px 3px 0px #AAB2C533;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    color: #000;
-    font-family: Roboto, sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.2px;
-    margin-bottom: 20px;
-
-    svg{
-        width: 18px;
-        height: 18px;
-    }
-`;
-
 export default function LoginPage(){
 
     const dispatch = useDispatch()
@@ -210,6 +187,7 @@ export default function LoginPage(){
         if(form.elements.email.value === '' || form.elements.password.value === ''){
             return formNotify()
         }
+
         dispatch(login({
             email: form.elements.email.value,
             password: form.elements.password.value,
@@ -243,7 +221,14 @@ export default function LoginPage(){
                 </TitleWrapper>
                 <FormWrapper>
                     <StyledParagraph>Ви можете авторизуватися за допомогою акаунта Google</StyledParagraph>
-                    <GoogleButton><FcGoogle />Google</GoogleButton>
+                    <GoogleLogin 
+                        onSuccess={res => {
+                            const data = jwtDecode(res.credential)
+                            dispatch(login({
+                                email: data.email,
+                            })) 
+                        }}
+                    />
                     <StyledParagraph>Або увійти за допомогою ел. пошти та паролю після реєстрації</StyledParagraph>
                     <form onSubmit={handleFormSubmit}>
                         <StyledLabel>Електронна пошта:</StyledLabel>
