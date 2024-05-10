@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { Button } from "./GoBackButton.styled";
 
-export const GoBackButton = () => {
+
+export const GoBackButton = () => { 
     const navigate = useNavigate()
     
-    return <button type="button" onClick={() => {navigate('/user-finances-report')}}>Перейти до розрахунків</button>
+    return <Button type="button" onClick={() => {navigate('/user-finances-report')}}>Перейти до розрахунків</Button>
 }
