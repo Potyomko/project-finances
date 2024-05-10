@@ -367,19 +367,21 @@ export default function Incomes(){
         if(amount === undefined || description === '' || category === ''){
             return formNotify()
         }
+
         dispatch(addIncome({
             email: user.email,
             amount: amount,
             description: description,
             category: category,
         }))
+
         setAmount(undefined)
         setDescription('')
         setCategory('')
     }
 
-    const handleButtonClick = (ev) => {
-        setAmount(0)
+    const handleButtonClick = () => {
+        setAmount(undefined)
         setDescription('')
         setCategory('')
     }
@@ -429,7 +431,7 @@ export default function Incomes(){
                 </DateWrapper>
                 <FormWrapper onSubmit={handleFormSubmit}>
                     <StyledForm>
-                        <Description placeholder="Опис" type="text" name="description" value={description} onChange={(ev) => setDescription(ev.target.value)} />
+                        <Description placeholder="Опис" type="text" name="description" value={description} onChange={(ev) => setDescription(ev.target.value)} autoComplete="false" />
                         <Select name="category" value={category} onChange={(ev) => setCategory(ev.target.value)}>
                             <StyledOption value="">Категорія прибутку</StyledOption>
                             <StyledOption value="Транспорт">Транспорт</StyledOption>
