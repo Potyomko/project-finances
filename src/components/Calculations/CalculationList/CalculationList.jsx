@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LeftArrow } from "./CalculationList.styled";
 
 export const CalculationList = () => {
 
@@ -15,7 +16,7 @@ export const CalculationList = () => {
     return (
         <>
             <div>
-                <button type="submit" onClick={handleChangOnInc}></button>
+                <LeftArrow type="submit" onClick={handleChangOnInc}></LeftArrow>
                 {text === 0 ? 'Витрати' : 'Дохід'}
                 <button type="submit" onClick={handleChangOnSpend}></button>
             </div>
