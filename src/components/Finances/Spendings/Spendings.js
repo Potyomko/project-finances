@@ -104,7 +104,7 @@ function Spendings({ addExpense }) {
               value={category}
               onChange={e => setCategory(e.target.value)}
             >
-              <Option value="">Виберіть категорію</Option>
+              <Option value="">Категорія витрат</Option>
               <Option value="Транспорт">Транспорт</Option>
               <Option value="Продукти">Продукти</Option>
               <Option value="Здоров'я">Здоров'я</Option>
@@ -121,7 +121,7 @@ function Spendings({ addExpense }) {
             </Select>
             <Amount
               type="number"
-              placeholder="Сума"
+              placeholder="0.00"
               value={amount}
               onChange={e => setAmount(e.target.value)}
             />

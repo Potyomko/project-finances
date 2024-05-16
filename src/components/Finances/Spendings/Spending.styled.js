@@ -299,5 +299,4 @@ export const SpendingContainer = styled.ul`
         background: #FF751D;
         border-radius: 25px;
         cursor: pointer;
-    }
-`
+    }`
