@@ -14,4 +14,13 @@ line-height: 14px;
 letter-spacing: 0.5px;
 text-align: center;
 cursor: pointer;
+margin-left: 0px;
+
+@media(min-width: 768px){
+    margin-left: 80px;
+}
+
+@media(min-width: 1200px){
+    margin-left: 170px;
+}
 `

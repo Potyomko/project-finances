@@ -9,55 +9,96 @@ import 'react-toastify/dist/ReactToastify.css';
 import { selectError } from "../../../redux/auth/selectors";
 import { useEffect } from "react";
 
+const Wrapper = styled.div`
+    
+    height: calc(100vh - 56px);    
+
+    @media(min-width: 768px){
+        width: 768px;
+        margin-left: auto;
+        margin-right: auto;
+        background-image: url(${heroBg2});
+        background-repeat: no-repeat;
+        background-position-x: 15%;
+        background-position-y: 80%;
+    }
+
+    @media(min-width: 1200px){
+        width: 1280px;
+        background-position-x: 25%;
+        background-position-y: 85%;
+    }
+`
+
 const HeroSection = styled.div`
     background-color: #F5F6FB;
-    height: 527px;
+    position: relative;
     background-image: url(${heroBg});
-    background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: 5%;
-    border-bottom-left-radius: 200px;
-    position: relative;
-`
-
-const Wrapper = styled.div`
-    width: 1280px;
-    height: calc(100vh - 56px);
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url(${heroBg2});
     background-repeat: no-repeat;
-    background-position-x: 25%;
-    background-position-y: 85%;
-`
+    padding-top: 60px;
 
-const TitleWrapper = styled.div`
+    height: 286px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 15%;
-    left: 20%;
+
+    @media(min-width: 768px){
+        border-bottom-left-radius: 200px;
+        gap: 50px;
+        height: 526px;
+    }
+
+    @media(min-width: 1200px){
+        flex-direction: row;
+        gap: 120px;
+        justify-content: center;
+        height: 526px;
+        padding-top: 120px;
+    }
+`
+
+const TitleWrapper = styled.div`
+
+    @media(max-width: 767px){
+        margin-bottom: 50px;
+    }
+
+    @media(min-width: 1200px){
+        margin-top: 180px;
+    }
 `;
 
 const Title = styled.h1`
     color: #000;
     font-family: Roboto, sans-serif;
     font-weight: 900;
-    font-size: 102px;
-    line-height: 120px;
+    font-size: 64px;
+    line-height: 75px;
     margin: 0;
+
+    @media(min-width: 768px){
+        font-size: 102px;
+        line-height: 120px;
+    }
 `;
 
 const SubTitle = styled.p`
     color: #52555F;
     font-family: Roboto, sans-serif;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 18.75px;
-    letter-spacing: 3px;
+    font-size: 13px;
+    line-height: 15.25px;
+    letter-spacing: 2px;
     margin: 0;
+
+    @media(min-width: 768px){
+        font-size: 16px;
+        line-height: 18.75px;
+        letter-spacing: 3px;
+    }
 `;
 
 const FormWrapper = styled.div`
@@ -65,15 +106,19 @@ const FormWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    width: 436px;
-    position: absolute;
+    width: 300px;
+    height: 525px;
     background: #fff;
     border-radius: 20px;
-    top: 21%;
-    right: 8%;
     box-shadow: 0px 10px 60px 0px #AAB2C533;
-    padding: 35px 80px;
+    padding: 35px 40px;
+    
+
+    @media(min-width: 768px){
+        width: 436px;
+        height: 535px;
+        padding: 35px 80px;
+    }
 `
 
 const StyledParagraph = styled.p`
@@ -95,10 +140,10 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
-    width: 265px;
+    width: 253px;
     height: 52px;
     border-radius: 30px;
-    padding: 0 30px;
+    padding: 0 20px;
     border: none;
     background: #F5F6FB;
     margin-bottom: 30px;
@@ -113,12 +158,20 @@ const StyledInput = styled.input`
         line-height: 16px;
         letter-spacing: 0.5px;
     }
+
+    @media(min-width: 768px){
+        width: 265px;
+        height: 52px;
+        padding: 0 30px;
+        margin-bottom: 40px;
+    }
 `;
 
 const ButtonsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
 `;
 
 const RegisterButton = styled.button`

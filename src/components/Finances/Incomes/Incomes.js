@@ -9,35 +9,57 @@ import 'react-toastify/dist/ReactToastify.css';
 import { addIncome, deleteIncome } from "../../../redux/incomes/operations";
 import { useEffect, useState } from "react";
 import { selectUser } from "../../../redux/auth/selectors";
+import heroBg2 from "../../../images/heroBg2.png"
 
 const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+
+    display: none;
+
+    @media(min-width: 768px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 `;
 
-const AddIncome = styled.div`
+const AddIncome = styled.form`
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    margin-bottom: 60px;
+    
+    @media(min-width: 768px){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    @media(min-width: 1200px){
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 60px;
+    }
 `;
 
 const StyledForm = styled.div`
-    width: 600px;
-    height: 44px;
-    border: 2px solid #F5F6FB;
-    border-radius: 16px 16px 16px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @media(min-width: 768px){
+        width: 467px;
+        border-radius: 16px 16px 16px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media(min-width: 1200px){
+        width: 600px;
+    }
 `;
 
-const FormWrapper = styled.form`
+const FormWrapper = styled.div`
     display: flex;
-    justify-conent: center;
+    justify-content: center;
     align-items: center;
     gap: 28px;
 `;
@@ -186,6 +208,22 @@ const IncomeWrapper = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    @media(min-width: 768px){
+        width: 605px;
+        height: 384px;
+    }
+
+    @media(min-width: 1200px){
+        width: 760px;
+        height: 400px;
+        border: 2px solid #F5F6FB;
+        border-radius: 16px 16px 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
 `;
 
 const IncomeHeader = styled.div`
@@ -224,9 +262,20 @@ const IncomeItem = styled.li`
     letter-spacing: 0.5px;
     color: #52555F;
 
-    p{
-        width: 152px;
-        text-align: center;
+    
+
+    @media(min-width: 768px){
+        p{
+            width: 120px;
+            text-align: center;
+        }
+    }
+
+    @media(min-width: 1200px){
+        p{
+            width: 152px;
+            text-align: center;
+        }
     }
 `;
 
@@ -240,10 +289,25 @@ const AmountContainer = styled.p`
 `;
 
 const IncomesContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+    
+
+    @media(min-width: 768px){
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 90px;
+        background-image: url(${heroBg2});
+        background-repeat: no-repeat;
+        background-position-y: 67%;
+        background-position-x: 90%;
+    }
+
+    @media(min-width: 1200px){
+        flex-direction: row;
+        background-image: none;
+        gap: 30px;
+    }
 `;
 
 const IncomeContainer = styled.ul`
@@ -272,16 +336,22 @@ const IncomeContainer = styled.ul`
 `;
 
 const Summary = styled.div`
-    width: 230px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
     
-    div:nth-last-child(1){
-        border-bottom-right-radius: 16px;
+    display: none;
+
+    @media(min-width: 768px){
+        width: 230px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        
+        div:nth-last-child(1){
+            border-bottom-right-radius: 16px;
+        }
     }
+
 `;
 
 const SummaryTitle = styled.div`
@@ -332,16 +402,27 @@ const DeleteIcon = styled.span`
     cursor: pointer;
 `;
 
+const FormContainer = styled.div`
+    display: flex;
+    
+    @media(min-width: 768px){
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    @media(min-width: 1200px){
+        flex-direction: row;
+        justify-content: center;
+        gap: 25px;
+    }
+`;
+
 export default function Incomes(){
 
     const user = useSelector(selectUser)
 
     const dispatch = useDispatch()
     const incomes = useSelector(getIncomes)
-
-    const [amount, setAmount] = useState(undefined)
-    const [description, setDescription] = useState('')
-    const [category, setCategory] = useState('')
     const [summary, setSummary] = useState([])
 
     const currentDate = new Date()
@@ -364,26 +445,25 @@ export default function Incomes(){
     const handleFormSubmit = (ev) => {
         ev.preventDefault();
         
-        if(amount === undefined || description === '' || category === ''){
+        const form = ev.currentTarget
+        const amount = parseFloat(form.elements.amount.value);
+
+        if(form.elements.amount.value === '' || form.elements.description.value === '' || form.elements.category.value === ''){
             return formNotify()
         }
 
         dispatch(addIncome({
             email: user.email,
             amount: amount,
-            description: description,
-            category: category,
+            description: form.elements.description.value,
+            category: form.elements.category.value,
         }))
-
-        setAmount(undefined)
-        setDescription('')
-        setCategory('')
+        form.reset()
     }
 
     const handleButtonClick = () => {
-        setAmount(undefined)
-        setDescription('')
-        setCategory('')
+        const form = document.getElementById('incomeForm');
+        form.reset();
     }
 
     const handleIncomeDelete = (incomeId) => {
@@ -424,35 +504,37 @@ export default function Incomes(){
 
     return(
         <Wrapper>
-            <AddIncome>
-                <DateWrapper>
-                    <img src={calendar} alt="date" />
-                    <p>{`${date}.${month}.${year}`}</p>
-                </DateWrapper>
-                <FormWrapper onSubmit={handleFormSubmit}>
-                    <StyledForm>
-                        <Description placeholder="Опис" type="text" name="description" value={description} onChange={(ev) => setDescription(ev.target.value)} autoComplete="false" />
-                        <Select name="category" value={category} onChange={(ev) => setCategory(ev.target.value)}>
-                            <StyledOption value="">Категорія прибутку</StyledOption>
-                            <StyledOption value="Транспорт">Транспорт</StyledOption>
-                            <StyledOption value="Продукти">Продукти</StyledOption>
-                            <StyledOption value="Здоров">Здоров'я</StyledOption>
-                            <StyledOption value="Алкоголь">Алкоголь</StyledOption>
-                            <StyledOption value="Розваги">Розваги</StyledOption>
-                            <StyledOption value="Все для дому">Все для дому</StyledOption>
-                            <StyledOption value="Техніка">Техніка</StyledOption>
-                            <StyledOption value="Комуналка, зв'язок">Комуналка, зв'язок</StyledOption>
-                            <StyledOption value="Спорт, хобі">Спорт, хобі</StyledOption>
-                            <StyledOption value="Навчання">Навчання</StyledOption>
-                            <StyledOption value="Інше">Інше</StyledOption>
-                        </Select>
-                        <Amount placeholder="0.00" name="amount" type="number" value={amount} onChange={(ev) => setAmount(parseFloat(ev.target.value))} />
-                    </StyledForm>
-                    <ButtonsWrapper>
-                        <AddButton type="submit">Ввести</AddButton>
-                        <ClearButton type="button" onClick={handleButtonClick}>Очистити</ClearButton>
-                    </ButtonsWrapper>
-                </FormWrapper>
+            <AddIncome onSubmit={handleFormSubmit} id="incomeForm">
+                <FormContainer>
+                    <DateWrapper>
+                        <img src={calendar} alt="date" />
+                        <p>{`${date}.${month}.${year}`}</p>
+                    </DateWrapper>
+                    <FormWrapper>
+                        <StyledForm>
+                            <Description placeholder="Опис" type="text" name="description" autoComplete="false" />
+                            <Select name="category">
+                                <StyledOption value="">Категорія прибутку</StyledOption>
+                                <StyledOption value="Транспорт">Транспорт</StyledOption>
+                                <StyledOption value="Продукти">Продукти</StyledOption>
+                                <StyledOption value="Здоров">Здоров'я</StyledOption>
+                                <StyledOption value="Алкоголь">Алкоголь</StyledOption>
+                                <StyledOption value="Розваги">Розваги</StyledOption>
+                                <StyledOption value="Все для дому">Все для дому</StyledOption>
+                                <StyledOption value="Техніка">Техніка</StyledOption>
+                                <StyledOption value="Комуналка, зв'язок">Комуналка, зв'язок</StyledOption>
+                                <StyledOption value="Спорт, хобі">Спорт, хобі</StyledOption>
+                                <StyledOption value="Навчання">Навчання</StyledOption>
+                                <StyledOption value="Інше">Інше</StyledOption>
+                            </Select>
+                            <Amount placeholder="0.00" name="amount" type={'number'} />
+                        </StyledForm>
+                    </FormWrapper>
+                </FormContainer>
+                <ButtonsWrapper>
+                    <AddButton type="submit">Ввести</AddButton>
+                    <ClearButton type="button" onClick={handleButtonClick}>Очистити</ClearButton>
+                </ButtonsWrapper>
             </AddIncome>
             <IncomesContainer>
                 <IncomeWrapper>
@@ -483,8 +565,8 @@ export default function Incomes(){
                 </IncomeWrapper>
                 <Summary>
                     <SummaryTitle>ЗВЕДЕННЯ</SummaryTitle>
-                    {summary && summary.length !== 0 && summary.map(income => (
-                        <SummaryItem key={income.amount}>
+                    {summary && summary.length !== 0 && summary.map((income, i) => (
+                        <SummaryItem key={i}>
                             <span>{income.month}</span>
                             <span>{income.amount}</span>
                         </SummaryItem>

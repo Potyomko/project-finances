@@ -3,10 +3,14 @@ import calculator from '../../../images/calculator.png';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: none;
+
+    @media(min-width: 768px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 `;
 
 export const AddSpending = styled.div`

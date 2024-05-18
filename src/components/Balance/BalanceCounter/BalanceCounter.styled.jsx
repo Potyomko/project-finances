@@ -6,6 +6,7 @@ export const Counter = styled.p`
     font-family: Roboto;
     font-weight: 700;
     font-size: 12px;
-    align-items: centre;
+    align-items: center;
+    margin: 0;
 
 `
