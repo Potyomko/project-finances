@@ -1,16 +1,27 @@
 {
   "files": {
     "main.css": "/static/css/main.f3ab7a6b.css",
-    "main.js": "/static/js/main.385f3214.js",
+    "main.js": "/static/js/main.0acd9aa1.js",
     "static/media/heroBg.png": "/static/media/heroBg.449514bedd10b314e1a3.png",
     "static/media/financebg.png": "/static/media/financebg.290f7d1086e158a4e855.png",
     "static/media/heroBg2.png": "/static/media/heroBg2.b6d39ba12d7a66e97185.png",
+    "static/media/products.svg": "/static/media/products.e0d6f5f5c21ec2e996b5ab2428973ee7.svg",
+    "static/media/sport.svg": "/static/media/sport.e2973b54691f542d152953a865af15d5.svg",
+    "static/media/alcohol.svg": "/static/media/alcohol.483ae46e53b7e474a549ca198b5faa5a.svg",
+    "static/media/tools.svg": "/static/media/tools.48b451edea5adf436896e5cf7f412e81.svg",
+    "static/media/health.svg": "/static/media/health.df2d55910603a729f966956f3f7c332f.svg",
+    "static/media/utility.svg": "/static/media/utility.cdf7381937c15ad184248ddce7766f17.svg",
+    "static/media/other.svg": "/static/media/other.fcbf62d73bf651354f6464e8bf7d3990.svg",
+    "static/media/house.svg": "/static/media/house.4cb962eebcc2ca8378b86b1c04c9ab69.svg",
+    "static/media/transport.svg": "/static/media/transport.f955ba480e6211d70e1715176dfa83c2.svg",
+    "static/media/entertainment.svg": "/static/media/entertainment.aa63e84c5079ec78a91f0d0a00475c4a.svg",
+    "static/media/education.svg": "/static/media/education.05cbf295c81291dcbca22c6b14fc0512.svg",
     "index.html": "/index.html",
     "main.f3ab7a6b.css.map": "/static/css/main.f3ab7a6b.css.map",
-    "main.385f3214.js.map": "/static/js/main.385f3214.js.map"
+    "main.0acd9aa1.js.map": "/static/js/main.0acd9aa1.js.map"
   },
   "entrypoints": [
     "static/css/main.f3ab7a6b.css",
-    "static/js/main.385f3214.js"
+    "static/js/main.0acd9aa1.js"
   ]
 }
