@@ -273,7 +273,7 @@ const IncomeItem = styled.li`
 
     @media(min-width: 1200px){
         p{
-            width: 152px;
+            width: 150px;
             text-align: center;
         }
     }
@@ -517,7 +517,7 @@ export default function Incomes(){
                                 <StyledOption value="">Категорія прибутку</StyledOption>
                                 <StyledOption value="Транспорт">Транспорт</StyledOption>
                                 <StyledOption value="Продукти">Продукти</StyledOption>
-                                <StyledOption value="Здоров">Здоров'я</StyledOption>
+                                <StyledOption value="Здоров'я">Здоров'я</StyledOption>
                                 <StyledOption value="Алкоголь">Алкоголь</StyledOption>
                                 <StyledOption value="Розваги">Розваги</StyledOption>
                                 <StyledOption value="Все для дому">Все для дому</StyledOption>

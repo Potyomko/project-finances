@@ -7,6 +7,7 @@ import calendar from '../../../images/calendar.png'
 import { useSelector } from "react-redux";
 import { getSpendings } from "../../../redux/incomes/selectors";
 import { getIncomes } from "../../../redux/incomes/selectors";
+import { GoBackButton } from "components/navigation/GoBackButton/GoBackButton";
 
 const Wrapper = styled.div`
 
@@ -257,6 +258,7 @@ export default function FinancePage(){
         <Wrapper>
             <BalanceWrapper>
                 <Balance/>
+                <GoBackButton/>
                 <DateWrapper>
                     <img src={calendar} alt="date" />
                     <p>{`${date}.${month}.${year}`}</p>

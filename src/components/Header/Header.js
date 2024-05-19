@@ -15,7 +15,7 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 10px 60px;
-    background: #fff;
+    background-color: #fff !important;
     position: relative;
 
     @media(min-width: 768px){

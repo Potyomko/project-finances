@@ -27,11 +27,10 @@ import calendar from '../../../images/calendar.png'
 import deleteIcon from "../../../images/delete.png"
 import s from './Spending.module.css'
 import { addSpending } from '../../../redux/spendings/operations.js';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function Spendings({ addExpense }) {
   const dispatch = useDispatch();
-  const spendings = useSelector(state => state.spendings);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
