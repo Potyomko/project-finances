@@ -179,12 +179,36 @@ export const ExpenseHeader = styled.div`
     border-radius: 15px 15px 0 0;
     background-color: #F5F6FB;
     padding: 0 20px;
-    /* margin-bottom: 10px; */
     width: 800px;
 `;
 
+// export const ExpenseItem = styled.li`
+//   height: 40px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   border-bottom: 2px solid #F5F6FB;
+//   font-family: Roboto, sans-serif;
+//   font-weight: 400;
+//   font-size: 12px;
+//   line-height: 14px;
+//   letter-spacing: 0.5px;
+//   color: #52555F;
+//   margin-bottom: 0;
+//   padding: 0 20px;
+
+//   & > * {
+//     flex-grow: 1;
+//     text-align: left;
+//   }
+
+//   &:last-child {
+//     justify-content: flex-end;
+//   }
+
+// `;
+
 export const ExpenseItem = styled.li`
-  /* width: calc(100% - 40px); */
   height: 40px;
   display: flex;
   align-items: center;
@@ -202,16 +226,33 @@ export const ExpenseItem = styled.li`
   & > * {
     flex-grow: 1;
     text-align: left;
+    overflow: hidden;
   }
 
   &:last-child {
     justify-content: flex-end;
   }
-
-  /* &:hover {
-    background-color: #F5F6FB;
-  } */
 `;
+
+export const DescriptionText = styled.p`
+  flex-grow: 2; /* Increase the flex-grow value if you want more space for description */
+  overflow: hidden;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines before ellipsis */
+  -webkit-box-orient: vertical;
+  text-align: center;
+`;
+
+// export const DateText = styled.p`
+//   flex-grow: 1;
+//   overflow: hidden;
+//   word-break: break-word;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 2; /* Number of lines before ellipsis */
+//   -webkit-box-orient: vertical;
+// `;
+
 
 export const AmountContainer = styled.p`
     flex-grow: 1;
