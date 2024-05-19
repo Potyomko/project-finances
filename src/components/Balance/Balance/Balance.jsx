@@ -16,7 +16,7 @@ export const Balance = () => {
                     <ConfirmButton/>
                 </BalanceContainer>
             </BalanceWrapper>
-            <GoBackButton/>
+            
         </Container>
     )
 
