@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 import calculator from '../../../images/calculator.png';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: none;
+
+    @media(min-width: 768px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 `;
 
 export const AddSpending = styled.div`
@@ -14,6 +19,18 @@ export const AddSpending = styled.div`
     align-items: center;
     gap: 25px;
     margin-bottom: 60px;
+`;
+
+export const DeleteIcon = styled.span`
+width: 32px;
+height: 32px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #fff;
+border: none;
+border-radius: 50%;
+cursor: pointer;
 `;
 
 export const DateContainer = styled.div`
@@ -50,7 +67,7 @@ export const FormContainer = styled.div`
 
 export const Description = styled.input`
     width: 300px;
-    height: 24px;
+    height: 44px;
     border: none;
     outline: none;
     padding: 10px 20px;
@@ -166,12 +183,36 @@ export const ExpenseHeader = styled.div`
     border-radius: 15px 15px 0 0;
     background-color: #F5F6FB;
     padding: 0 20px;
-    margin-bottom: 10px;
-    width: 740px;
+    width: 800px;
 `;
 
+// export const ExpenseItem = styled.li`
+//   height: 40px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   border-bottom: 2px solid #F5F6FB;
+//   font-family: Roboto, sans-serif;
+//   font-weight: 400;
+//   font-size: 12px;
+//   line-height: 14px;
+//   letter-spacing: 0.5px;
+//   color: #52555F;
+//   margin-bottom: 0;
+//   padding: 0 20px;
+
+//   & > * {
+//     flex-grow: 1;
+//     text-align: left;
+//   }
+
+//   &:last-child {
+//     justify-content: flex-end;
+//   }
+
+// `;
+
 export const ExpenseItem = styled.li`
-  width: calc(100% - 40px);
   height: 40px;
   display: flex;
   align-items: center;
@@ -189,16 +230,33 @@ export const ExpenseItem = styled.li`
   & > * {
     flex-grow: 1;
     text-align: left;
+    overflow: hidden;
   }
 
   &:last-child {
     justify-content: flex-end;
   }
-
-  &:hover {
-    background-color: #F5F6FB;
-  }
 `;
+
+export const DescriptionText = styled.p`
+  flex-grow: 2; /* Increase the flex-grow value if you want more space for description */
+  overflow: hidden;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines before ellipsis */
+  -webkit-box-orient: vertical;
+  text-align: center;
+`;
+
+// export const DateText = styled.p`
+//   flex-grow: 1;
+//   overflow: hidden;
+//   word-break: break-word;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 2; /* Number of lines before ellipsis */
+//   -webkit-box-orient: vertical;
+// `;
+
 
 export const AmountContainer = styled.p`
     flex-grow: 1;
@@ -252,13 +310,14 @@ export const ExpenseWrapper = styled.div`
     width: 760px;
     height: auto;
     border: 2px solid #F5F6FB;
-    border-radius: 16px;
+    border-radius: 16px 16px 0px 0px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-right: 260px;
 `;
 
 export const SpendingContainer = styled.ul`
@@ -269,16 +328,20 @@ export const SpendingContainer = styled.ul`
   padding: 0;
   width: 100%;
   
-  &::-webkit-scrollbar {
-    width: 12px;
-    border-radius: 6px;
-  }
+  &::-webkit-scrollbar{
+        padding-top:5px;
+        width: 7px;
+        cursor: pointer;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #FF751D;
-    border-radius: 6px;
-  }
+    &::-webkit-scrollbar-track{
+        background: #fff;
+        border-radius: 25px;
+        cursor: pointer;
+    }
 
-  scrollbar-width: thin;
-  scrollbar-color: #FF751D transparent;
-`;
+    &::-webkit-scrollbar-thumb{
+        background: #FF751D;
+        border-radius: 25px;
+        cursor: pointer;
+    }`
