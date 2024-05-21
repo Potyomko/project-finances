@@ -166,7 +166,10 @@ export default function CalculationList({spendings = [], incomes = []}){
                 </ToggleButton>
             </ToggleButtonWrapper>
             <FinanceWrapper>
-                {Object.entries(groupedData).map(([cat, amount]) => (
+                {data.length === 0 && (
+                    <p>У вас ще немає доходів або витрат</p>
+                )}
+                {data.length !== 0 && Object.entries(groupedData).map(([cat, amount]) => (
                     <FinanceItem key={cat}>
                         <Amount>{amount}</Amount>
                         <img src={categoryIcons[cat]} alt={cat} />
