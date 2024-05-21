@@ -14,7 +14,6 @@ import heroBg2 from "../../../images/heroBg2.png"
 const Wrapper = styled.div`
 
     display: none;
-
     @media(min-width: 768px){
         display: flex;
         justify-content: center;

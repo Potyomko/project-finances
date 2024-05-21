@@ -8,6 +8,10 @@
 
 .category {
     margin-right: 70px;
+
+    @media (min-width: 768) {
+        margin-right: 0px;
+    }
 }
 
 .sum {
