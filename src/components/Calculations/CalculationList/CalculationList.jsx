@@ -108,11 +108,16 @@ const Category = styled.p`
     margin: 0;
 `
 
-export default function CalculationList({spendings, incomes}){
+export default function CalculationList({spendings = [], incomes = []}){
 
-    const [category, setCategory] = useState('incomes')
+    const [category, setCategory] = useState('incomes');
     
     const data = category === 'spendings' ? spendings : incomes;
+
+    if (!Array.isArray(data)) {
+        console.error("Data is not an array", data);
+        return null;
+    }
 
     const groupedData = data.reduce((acc, item) => {
         if (!acc[item.category]) {
@@ -164,7 +169,7 @@ export default function CalculationList({spendings, incomes}){
                 {Object.entries(groupedData).map(([cat, amount]) => (
                     <FinanceItem key={cat}>
                         <Amount>{amount}</Amount>
-                        <img src={categoryIcons[cat]} />
+                        <img src={categoryIcons[cat]} alt={cat} />
                         <Category>{cat}</Category>
                     </FinanceItem>
                 ))}
