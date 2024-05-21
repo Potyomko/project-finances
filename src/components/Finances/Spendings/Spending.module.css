@@ -1,27 +1,48 @@
+@media (min-width: 768px) {
+    .data {
+        margin-left: 105px;
+    }
+
+    .desc {
+        margin-left: 100px;
+    }
+
+    .category {
+        margin-left: 120px;
+    }
+
+    .sum {
+        margin-left: 80px;
+    }
+}
+
+@media (min-width: 1200px) {
 .data {
-    margin-left: 3.5px;
+    margin-left: 53px;
 }
 
 .desc {
-    margin-right: 180px;
+    margin-left: 120px;
 }
 
 .category {
-    margin-right: 70px;
+    margin-left: 155px;
 }
 
 .sum {
-    margin-right: 100px;
+    margin-left: 120px;
+}
 }
 
-
+/* ======================= */
 .data1 {
      width: 115px;
+     margin-right: 20px;
      text-align: center;
 }
 
 .desc1 {
-    width: 250px;
+    width: 100px;
     text-align: center;
 }
 
