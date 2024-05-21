@@ -2,16 +2,6 @@ import styled from 'styled-components';
 import calculator from '../../../images/calculator.png';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Wrapper = styled.div`
-    display: none;
-
-    @media(min-width: 768px){
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-`;
 
 export const AddSpending = styled.form`
     display: flex;
@@ -59,14 +49,14 @@ export const DateContainer = styled.div`
     height: 44px;
 `;
 
-export const FormWrapper = styled.form`
+export const FormBox = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 28px;
 `;
 
-export const StyledForm = styled.div`
+export const Form = styled.div`
     /* width: 600px;
     height: 44px;
     border: 2px solid #F5F6FB;
@@ -290,6 +280,17 @@ export const ExpenseItem = styled.li`
   }
 `;
 
+export const Wrapper = styled.div`
+    /* display: none; */
+
+    @media(min-width: 768px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+`;
+
 export const DescriptionText = styled.p`
   flex-grow: 2;
   overflow: hidden;
@@ -395,7 +396,7 @@ export const ExpenseWrapper = styled.div`
     }
 `;
 
-export const Summary = styled.div`
+export const TotalCost = styled.div`
     
     display: none;
 
@@ -414,13 +415,13 @@ export const Summary = styled.div`
 
 `;
 
-export const SummaryTitle = styled.div`
-    width: 100%;
-    height: 40px;
-    background-color: #F5F6FB;
+export const TotalCostTitle = styled.div`
     color: #000;
     font-family: Roboto, sans-serif;
     font-weight: 700;
+    width: 100%;
+    height: 40px;
+    background-color: #F5F6FB;
     font-size: 12px;
     line-height: 14px;
     letter-spacing: 0.5px;
@@ -432,10 +433,7 @@ export const SummaryTitle = styled.div`
     border-bottom: 2px solid #fff;
 `;
 
-export const SummaryItem = styled.div`
-    width: 100%;
-    height: 40px;
-    background-color: #F5F6FB;
+export const TotalCostItem = styled.div`
     color: #52555F;
     font-family: Roboto, sans-serif;
     font-weight: 400;
@@ -443,6 +441,9 @@ export const SummaryItem = styled.div`
     line-height: 14px;
     letter-spacing: 1px;
     display: flex;
+    width: 100%;
+    height: 40px;
+    background-color: #F5F6FB;
     justify-content: center;
     align-items: center;
     gap: 30px;
@@ -451,12 +452,12 @@ export const SummaryItem = styled.div`
 `;
 
 export const SpendingContainer = styled.ul`
-  max-height: 350px;
-  overflow-y: auto;
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
   width: 100%;
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
   
   &::-webkit-scrollbar{
         padding-top:5px;

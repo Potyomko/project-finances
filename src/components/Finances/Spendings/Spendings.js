@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import {
   Wrapper,
   DateContainer,
-  FormWrapper,
-  StyledForm,
+  FormBox,
+  Form,
   FormContainer,
   Description,
   Select,
   Option,
-  Summary,
-  SummaryTitle,
-  SummaryItem,
+  TotalCost,
+  TotalCostTitle,
+  TotalCostItem,
   Amount,
   ButtonsContainer,
   AddButton,
@@ -33,11 +33,11 @@ import s from './Spending.module.css'
 import { addSpending, deleteSpending } from '../../../redux/spendings/operations.js';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectUser } from "../../../redux/auth/selectors";
+// import { selectUser } from "../../../redux/auth/selectors";
 
 function Spendings({ addExpense }) {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
@@ -101,7 +101,7 @@ function Spendings({ addExpense }) {
     setSummary(summaryArray);
   };
 
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
   const formattedDate = `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()}`;
 
   const handleClear = () => {
@@ -123,7 +123,6 @@ function Spendings({ addExpense }) {
     setRows(newRows);
     localStorage.setItem('spendingRows', JSON.stringify(newRows));
 
-    // Dispatch delete action if needed
     // dispatch(deleteSpending({ email: user.email, incomeId }));
   };
 
@@ -135,8 +134,8 @@ function Spendings({ addExpense }) {
             <img src={calendar} alt="date" />
             <p>{formattedDate}</p>
           </DateContainer>
-          <FormWrapper>
-            <StyledForm>
+          <FormBox>
+            <Form>
               <Description
                 type="text"
                 placeholder="Опис"
@@ -166,8 +165,8 @@ function Spendings({ addExpense }) {
                 value={amount}
                 onChange={e => setAmount(e.target.value)}
               />
-            </StyledForm>
-          </FormWrapper>
+            </Form>
+          </FormBox>
         </FormContainer>
         <ButtonsContainer>
           <AddButton type="submit">Ввести</AddButton>
@@ -211,19 +210,22 @@ function Spendings({ addExpense }) {
             ))}
           </SpendingContainer>
         </ExpenseWrapper>
-        <Summary>
-          <SummaryTitle>ЗВЕДЕННЯ</SummaryTitle>
+        {/* Секція "Фінанси та зведення" */}
+        <TotalCost>
+          <TotalCostTitle>ЗВЕДЕННЯ</TotalCostTitle>
+            {/* Перевірка, чи масив summary містить якісь елементи */}
           {summary.length > 0 ? (
+            // Перебірка масиву summary та відображення кожного елемента як TotalCostItem
             summary.map((expense, i) => (
-              <SummaryItem key={i}>
+              <TotalCostItem key={i}>
                 <span>{expense.month}</span>
                 <span>{expense.amount} грн.</span>
-              </SummaryItem>
+              </TotalCostItem>
             ))
           ) : (
             <p></p>
           )}
-        </Summary>
+        </TotalCost>
       </SpendingsContainer>
       <ToastContainer />
     </Wrapper>
