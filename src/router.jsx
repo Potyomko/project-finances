@@ -7,7 +7,7 @@ import HomePage from "components/HomePage/HomePage";
 import FinancePage from "components/Finances/FinancePage/FinancePage";
 import Incomes from "components/Finances/Incomes/Incomes";
 import Spendings from "components/Finances/Spendings/Spendings";
-import { Calculation } from "components/Calculations/Calculation/Calculation";
+import CalculationReport from "components/Calculations/CalculationReport/CalculationReport";
 
 export const router = createBrowserRouter(
     [
@@ -44,7 +44,7 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: '/user-finances-report',
-                    element: <PrivateRoute component={Calculation} redirectTo={'/login'} />,
+                    element: <PrivateRoute component={CalculationReport} redirectTo={'/login'} />,
                     children: [
                         {
                             path: '/user-finances-report/incomes',

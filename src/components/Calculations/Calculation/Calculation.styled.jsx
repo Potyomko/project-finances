@@ -97,7 +97,7 @@ margin: 0;
 
 export const IncomesP = styled.p`
 
-margin: 15px 319px 15px 20px;
+margin: 15px 319px 15px 0px;
 
 display: flex;
 flex-direction: column;
@@ -122,7 +122,7 @@ margin: 0;
 
 export const Stick = styled.span`
 
-margin: 7px auto 7px auto;
+margin: 7px 20px 7px 20px;
 
 width: 0px;
 height: 36px;
