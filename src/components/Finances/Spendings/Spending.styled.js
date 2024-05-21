@@ -3,25 +3,6 @@ import calculator from '../../../images/calculator.png';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export const AddSpending = styled.form`
-    display: flex;
-    @media(min-width: 768px){
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        margin-bottom: 50px;
-    }
-
-    @media(min-width: 1200px){
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 25px;
-        margin-bottom: 60px;
-    }
-`;
-
 export const DeleteIcon = styled.span`
 width: 32px;
 height: 32px;
@@ -92,6 +73,26 @@ display: flex;
     gap: 25px;
 }
 `;
+
+export const AddSpending = styled.form`
+    display: flex;
+    @media(min-width: 768px){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    @media(min-width: 1200px){
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+`;
+
 
 export const Description = styled.input`
     width: 300px;
@@ -211,7 +212,7 @@ export const ExpenseHeader = styled.div`
     background-color: #F5F6FB;
     padding: 0 20px;
     width: 800px;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 `;
 
 // export const ExpenseItem = styled.li`
@@ -257,7 +258,7 @@ export const ExpenseItem = styled.li`
 
   @media(min-width: 768px){
         p{
-            /* width: 120px; */
+            /* width: 10px; */
             text-align: center;
         }
     }
