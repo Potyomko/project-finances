@@ -27,7 +27,8 @@ import calendar from '../../../images/calendar.png'
 import deleteIcon from "../../../images/delete.png"
 import s from './Spending.module.css'
 import { addSpending } from '../../../redux/spendings/operations.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/selectors.js';
 
 function Spendings({ addExpense }) {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function Spendings({ addExpense }) {
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const [rows, setRows] = useState(Array.from({ length: 20 }).map(() => null));
+  const user = useSelector(selectUser)
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -44,10 +46,10 @@ function Spendings({ addExpense }) {
     }
   
     const newExpense = {
-      date: new Date().toLocaleDateString(),
       description,
       category,
       amount,
+      email: user.email
     };
   
     dispatch(addSpending(newExpense));
