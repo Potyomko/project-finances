@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { getIncomes, getSpendings } from '../../../redux/incomes/selectors';
 import { Box, SpendingsNum, IncomesNum, SpendingsP, IncomesP, Stick, Wrapper, BalanceWrapper, BackButton, BackButtonText } from './Calculation.styled';
 import CalculationList from '../CalculationList/CalculationList';
-import { Balance } from 'components/Balance/Balance/Balance';
+import Balance from '../../Balance/Balance';
 import backbtn from "../../../images/backbtn.png"
 import { useNavigate } from 'react-router-dom';
 
@@ -29,9 +29,9 @@ export const Calculation = () => {
                 <Balance />
             </BalanceWrapper>
             <Box>
-                <SpendingsP>Витрати:  <SpendingsNum> - {spendingAmount}.</SpendingsNum></SpendingsP>
+                <SpendingsP>Витрати:  <SpendingsNum> - {spendingAmount} грн.</SpendingsNum></SpendingsP>
                 <Stick></Stick>
-                <IncomesP>Доходи:  <IncomesNum> + {incomesAmount}.</IncomesNum></IncomesP>
+                <IncomesP>Доходи:  <IncomesNum> + {incomesAmount} грн.</IncomesNum></IncomesP>
             </Box>
             <CalculationList spendings={spendings} incomes={incomes} />
         </Wrapper>

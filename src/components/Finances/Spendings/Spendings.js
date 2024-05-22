@@ -30,7 +30,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import calendar from '../../../images/calendar.png'
 import deleteIcon from "../../../images/delete.png"
 import s from './Spending.module.css'
-import { addSpending } from '../../../redux/spendings/operations.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/selectors.js';
 import { addSpending, deleteSpending } from '../../../redux/spendings/operations.js';
@@ -41,7 +40,7 @@ function Spendings({ addExpense }) {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
-  const [rows, setRows] = useState(Array.from({ length: 20 }).map(() => null));
+  // const [rows, setRows] = useState(Array.from({ length: 20 }).map(() => null));
   const [rows, setRows] = useState(() => {
     const savedRows = localStorage.getItem('spendingRows');
     return savedRows ? JSON.parse(savedRows) : Array.from({ length: 20 }).map(() => null);
@@ -62,7 +61,7 @@ function Spendings({ addExpense }) {
     const newExpense = {
       description,
       category,
-      email: user.email
+      email: user.email,
       amount: parseFloat(amount),
     };
   

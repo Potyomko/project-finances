@@ -3,25 +3,27 @@ import styled from "styled-components";
 export const Box = styled.div`
 
 width: 282px;
-height: 50px;
+height: 85px;
 display: flex;
 justify-content: center;
 align-items: center;
 margin-left: auto;
 margin-right: auto;
 margin-bottom: 40px;
-gap: 10px;
+gap: 15px;
 
 
 background: #FFFFFF;
 /* shadow 1 */
 box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-border-radius: 30px;
+border-radius: 20px;
 
 @media(min-width: 768px){
     width: 668px;
+    height: 50px;
     gap: 20px;
     margin-bottom: 30px;
+    border-radius: 30px;
 }
 
 @media(min-width: 1200px){
@@ -34,7 +36,7 @@ export const IncomesNum = styled.span`
 
 /* + 45 000.00 грн. */
 
-margin-left: 14px;
+margin: 0;
 
 display: flex;
 justify-content: center;
@@ -49,13 +51,17 @@ letter-spacing: 0.04em;
 
 color: #407946;
 
+@media(min-width: 768px){
+    margin-left: 14px;
+}
+
 `
 
 export const SpendingsNum = styled.span`
 
 /* - 18 000.00 грн. */
 
-margin-left: 14px;
+margin: 0;
 
 font-family: 'Roboto';
 font-style: normal;
@@ -67,6 +73,9 @@ letter-spacing: 0.04em;
 
 color: #E53935;
 
+@media(min-width: 768px){
+    margin-left: 14px;
+}
 
 `
 
@@ -78,6 +87,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+gap: 5px;
 
 font-family: 'Roboto';
 font-style: normal;
@@ -91,6 +101,7 @@ margin: 0;
 
 @media(min-width: 768px){
     flex-direction: row;
+    gap: 0;
 }
 
 `
@@ -103,6 +114,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+gap: 5px;
 
 font-family: 'Roboto';
 font-style: normal;
@@ -116,6 +128,7 @@ margin: 0;
 
 @media(min-width: 768px){
     flex-direction: row;
+    gap: 0;
 }
 
 `
@@ -125,10 +138,14 @@ export const Stick = styled.span`
 margin: 7px 20px 7px 20px;
 
 width: 0px;
-height: 36px;
+height: 70px;
 margin: 0;
 
 border: 1px solid #E0E5EB;
+
+@media(min-width: 768px){
+    height: 36px;
+}
 `
 
 export const Wrapper = styled.div`

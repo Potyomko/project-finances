@@ -21,7 +21,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-radius: 30px;
+    border-radius: 20px;
     background-color: #fff;
     box-shadow: 0px 10px 60px 0px #AAB2C533;
     margin-left: auto;
@@ -30,6 +30,7 @@ const Container = styled.div`
 
     @media(min-width: 768px){
         width: 668px;
+        border-radius: 30px;
     }
 
     @media(min-width: 1200px){
@@ -108,9 +109,9 @@ const Category = styled.p`
     margin: 0;
 `
 
-export default function CalculationList({spendings = [], incomes = []}){
+export default function CalculationList({spendings, incomes}){
 
-    const [category, setCategory] = useState('incomes');
+    const [category, setCategory] = useState('spendings');
     
     const data = category === 'spendings' ? spendings : incomes;
 
@@ -169,7 +170,7 @@ export default function CalculationList({spendings = [], incomes = []}){
                 {data.length === 0 && (
                     <p>У вас ще немає доходів або витрат</p>
                 )}
-                {data.length !== 0 && Object.entries(groupedData).map(([cat, amount]) => (
+                {Object.entries(groupedData).map(([cat, amount]) => (
                     <FinanceItem key={cat}>
                         <Amount>{amount}</Amount>
                         <img src={categoryIcons[cat]} alt={cat} />
