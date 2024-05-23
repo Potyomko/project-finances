@@ -166,14 +166,12 @@ margin-left: auto;
 
 @media(min-width: 768px){
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     width: 668px;
-    gap: 35px;
 }
 
 @media(min-width: 1200px){
     width: 1060px;
-    gap: 170px;
 }
 `
 
@@ -183,6 +181,14 @@ justify-content: space-between;
 align-items: center;
 gap: 5px;
 cursor: pointer;
+
+@media(min-width: 768px){
+    width: 140px;
+}
+
+@media(min-width: 1200px){
+    margin-right: 145px;
+}
 `
 
 export const BackButtonText = styled.div`
@@ -199,4 +205,57 @@ display: none;
     letter-spacing: 1px;
     color: #52555FB2;
 }
+`
+
+export const FilterWrapper = styled.div`
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+`
+
+export const FilterButton = styled.div`
+
+cursor: pointer;
+width: 4px;
+height: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+
+`
+
+export const FilterText = styled.div`
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+letter-spacing: 1px;
+color: #52555FB2;
+`
+
+export const FilterContent = styled.div`
+
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+
+`
+
+export const FilterDate = styled.div`
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 16px;
+letter-spacing: 1px;
+color: #000;
+text-transform: uppercase;
+width: 100px;
+text-align: center;
 `
