@@ -15,6 +15,8 @@ import utility from "../../../images/utility.svg";
 import sport from "../../../images/sport.svg";
 import education from "../../../images/education.svg";
 import other from "../../../images/other.svg";
+import salary from "../../../images/salary.svg";
+import extrasalary from "../../../images/extrasalary.svg";
 
 ChartJS.register(
   CategoryScale,
@@ -180,9 +182,12 @@ export default function CalculationList({ spendings, incomes }) {
             {
                 label: selectedCategory,
                 data: Object.values(groupedData[selectedCategory]),
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: '#FF751D',
+                &:nth-child(odd): '#FFDAC0', 
+                borderColor: '#FF751D',
                 borderWidth: 1,
+                borderRadius: 10,
+                width: 38,
             },
         ],
     } : null;
