@@ -183,7 +183,7 @@ export default function CalculationList({ spendings, incomes }) {
                 label: selectedCategory,
                 data: Object.values(groupedData[selectedCategory]),
                 backgroundColor: '#FF751D',
-                &:nth-child(odd): '#FFDAC0', 
+                // &:nth-child(odd): '#FFDAC0', 
                 borderColor: '#FF751D',
                 borderWidth: 1,
                 borderRadius: 10,
