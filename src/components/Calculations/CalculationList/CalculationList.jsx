@@ -12,6 +12,8 @@ import utility from "../../../images/utility.svg"
 import sport from "../../../images/sport.svg"
 import education from "../../../images/education.svg"
 import other from "../../../images/other.svg"
+import salary from "../../../images/salary.svg"
+import extrasalary from "../../../images/extrasalary.svg"
 import { useState } from "react";
 
 const Container = styled.div`
@@ -144,6 +146,8 @@ export default function CalculationList({spendings, incomes}){
         "Спорт, хобі": sport,
         "Навчання": education,
         "Інше": other,
+        "Зп": salary,
+        "Дод. дохід": extrasalary,
     };
 
     return(

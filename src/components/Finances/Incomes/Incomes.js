@@ -514,17 +514,8 @@ export default function Incomes(){
                             <Description placeholder="Опис" type="text" name="description" autoComplete="false" />
                             <Select name="category">
                                 <StyledOption value="">Категорія прибутку</StyledOption>
-                                <StyledOption value="Транспорт">Транспорт</StyledOption>
-                                <StyledOption value="Продукти">Продукти</StyledOption>
-                                <StyledOption value="Здоров'я">Здоров'я</StyledOption>
-                                <StyledOption value="Алкоголь">Алкоголь</StyledOption>
-                                <StyledOption value="Розваги">Розваги</StyledOption>
-                                <StyledOption value="Все для дому">Все для дому</StyledOption>
-                                <StyledOption value="Техніка">Техніка</StyledOption>
-                                <StyledOption value="Комуналка, зв'язок">Комуналка, зв'язок</StyledOption>
-                                <StyledOption value="Спорт, хобі">Спорт, хобі</StyledOption>
-                                <StyledOption value="Навчання">Навчання</StyledOption>
-                                <StyledOption value="Інше">Інше</StyledOption>
+                                <StyledOption value="Зп">Зп</StyledOption>
+                                <StyledOption value="Дод. дохід">Дод. дохід</StyledOption>
                             </Select>
                             <Amount placeholder="0.00" name="amount" type={'number'} />
                         </StyledForm>

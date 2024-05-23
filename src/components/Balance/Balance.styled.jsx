@@ -6,10 +6,10 @@ export const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
     @media(min-width: 768px){
-        width: 369px;
+        width: 320px;
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: 0;
