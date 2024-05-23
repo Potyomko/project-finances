@@ -1,20 +1,28 @@
-import styled from "styled-components"
-import leftbtn from "../../../images/leftbtn.png"
-import rightbtn from "../../../images/rightbtn.png"
-import products from "../../../images/products.svg"
-import alcohol from "../../../images/alcohol.svg"
-import entertainment from "../../../images/entertainment.svg"
-import health from "../../../images/health.svg"
-import transport from "../../../images/transport.svg"
-import house from "../../../images/house.svg"
-import tools from "../../../images/tools.svg"
-import utility from "../../../images/utility.svg"
-import sport from "../../../images/sport.svg"
-import education from "../../../images/education.svg"
-import other from "../../../images/other.svg"
-import salary from "../../../images/salary.svg"
-import extrasalary from "../../../images/extrasalary.svg"
-import { useState } from "react";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import leftbtn from "../../../images/leftbtn.png";
+import rightbtn from "../../../images/rightbtn.png";
+import products from "../../../images/products.svg";
+import alcohol from "../../../images/alcohol.svg";
+import entertainment from "../../../images/entertainment.svg";
+import health from "../../../images/health.svg";
+import transport from "../../../images/transport.svg";
+import house from "../../../images/house.svg";
+import tools from "../../../images/tools.svg";
+import utility from "../../../images/utility.svg";
+import sport from "../../../images/sport.svg";
+import education from "../../../images/education.svg";
+import other from "../../../images/other.svg";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend
+);
 
 const Container = styled.div`
     width: 282px;
@@ -65,7 +73,7 @@ const ToggleButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const FinanceWrapper = styled.div`
     width: 282px;
@@ -78,7 +86,7 @@ const FinanceWrapper = styled.div`
     @media(min-width: 768px){
         width: 613px;
     }
-`
+`;
 
 const FinanceItem = styled.div`
     width: 85px;
@@ -87,7 +95,8 @@ const FinanceItem = styled.div`
     justify-content: center;
     align-items: center;
     gap: 5px;
-`
+    cursor: pointer;
+`;
 
 const Amount = styled.p`
     font-family: Roboto, sans-serif;
@@ -98,7 +107,7 @@ const Amount = styled.p`
     color: #52555F;
     text-align: center;
     margin: 0;
-`
+`;
 
 const Category = styled.p`
     font-family: Roboto, sans-serif;
@@ -109,12 +118,19 @@ const Category = styled.p`
     color: #52555F;
     text-align: center;
     margin: 0;
-`
+`;
 
-export default function CalculationList({spendings, incomes}){
 
-    const [category, setCategory] = useState('spendings');
-    
+const ChartWrapper = styled.div`
+    width: 100%;
+    padding: 20px;
+`;
+
+export default function CalculationList({ spendings, incomes }) {
+    const [category, setCategory] = useState('incomes');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
+
     const data = category === 'spendings' ? spendings : incomes;
 
     if (!Array.isArray(data)) {
@@ -124,14 +140,22 @@ export default function CalculationList({spendings, incomes}){
 
     const groupedData = data.reduce((acc, item) => {
         if (!acc[item.category]) {
-            acc[item.category] = 0;
+            acc[item.category] = {};
         }
-        acc[item.category] += item.amount;
+        if (!acc[item.category][item.description]) {
+            acc[item.category][item.description] = 0;
+        }
+        acc[item.category][item.description] += item.amount;
         return acc;
     }, {});
-    
+
+    const handleItemClick = (cat) => {
+        setSelectedCategory(cat);
+    };
+
     const toggleButtonClick = () => {
         setCategory((prevCategory) => prevCategory === 'spendings' ? 'incomes' : 'spendings');
+        setSelectedCategory(null);
     };
 
     const categoryIcons = {
@@ -150,21 +174,38 @@ export default function CalculationList({spendings, incomes}){
         "Дод. дохід": extrasalary,
     };
 
-    return(
+    const chartData = selectedCategory ? {
+        labels: Object.keys(groupedData[selectedCategory]),
+        datasets: [
+            {
+                label: selectedCategory,
+                data: Object.values(groupedData[selectedCategory]),
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            },
+        ],
+    } : null;
+
+    const chartOptions = {
+        plugins: {
+            title: {
+                display: false,
+            },
+        },
+    };
+
+    return (
         <Container>
             <ToggleButtonWrapper>
                 <ToggleButton onClick={toggleButtonClick}>
                     <img src={leftbtn} alt="arrow" />
                 </ToggleButton>
                 {category === 'spendings' && (
-                    <ToggleButtonText>
-                        ВИТРАТИ
-                    </ToggleButtonText>
+                    <ToggleButtonText>ВИТРАТИ</ToggleButtonText>
                 )}
                 {category === 'incomes' && (
-                    <ToggleButtonText>
-                        ДОХОДИ
-                    </ToggleButtonText>
+                    <ToggleButtonText>ДОХОДИ</ToggleButtonText>
                 )}
                 <ToggleButton onClick={toggleButtonClick}>
                     <img src={rightbtn} alt="arrow" />
@@ -174,14 +215,22 @@ export default function CalculationList({spendings, incomes}){
                 {data.length === 0 && (
                     <p>У вас ще немає доходів або витрат</p>
                 )}
-                {Object.entries(groupedData).map(([cat, amount]) => (
-                    <FinanceItem key={cat}>
-                        <Amount>{amount}</Amount>
-                        <img src={categoryIcons[cat]} alt={cat} />
-                        <Category>{cat}</Category>
-                    </FinanceItem>
-                ))}
+                {Object.entries(groupedData).map(([cat, descriptions]) => {
+                    const totalAmount = Object.values(descriptions).reduce((sum, amount) => sum + amount, 0);
+                    return (
+                        <FinanceItem key={cat} onClick={() => handleItemClick(cat)}>
+                            <Amount>{totalAmount}</Amount>
+                            <img src={categoryIcons[cat]} alt={cat} />
+                            <Category>{cat}</Category>
+                        </FinanceItem>
+                    );
+                })}
             </FinanceWrapper>
+            {selectedCategory && (
+                <ChartWrapper>
+                    <Bar data={chartData} options={chartOptions} />
+                </ChartWrapper>
+            )}
         </Container>
-    )
+    );
 }
