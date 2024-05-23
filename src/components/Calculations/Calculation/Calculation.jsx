@@ -20,7 +20,7 @@ export const Calculation = () => {
     const incomesAmount = incomes.reduce((total, current) => { return total += current.amount }, 0);
 
     const handleButtonClick = () => {
-        navigate('/user-finances/incomes')
+        navigate('/incomes')
     }
 
     const formatDate = (date) => {

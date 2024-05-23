@@ -303,8 +303,8 @@ export default function FinancePage(){
                     })}
                 </MobileContainer>
                 <ButtonsWrapper>
-                    <StyledLink className={pathname.includes('/spendings') ? 'active' : ''} to={'/user-finances/spendings'}>Витрати</StyledLink>
-                    <StyledLink className={pathname.includes('/incomes') ? 'active' : ''} to={'/user-finances/incomes'}>Дохід</StyledLink>
+                    <StyledLink className={pathname.includes('/spendings') ? 'active' : ''} to={'/spendings'}>Витрати</StyledLink>
+                    <StyledLink className={pathname.includes('/incomes') ? 'active' : ''} to={'/incomes'}>Дохід</StyledLink>
                 </ButtonsWrapper>
                 <Container>
                     <Outlet />
