@@ -153,7 +153,7 @@ export default function Header(){
             <StyledHeader>
                 <LogoWrapper>
                     <StyledImage src={logoImage} />
-                    <StyledLink to={'/'} >INVESTIQ</StyledLink>
+                    <StyledLink to={'/incomes'} >INVESTIQ</StyledLink>
                 </LogoWrapper>
                 <LogoutWrapper>
                     {isLoggedIn && (

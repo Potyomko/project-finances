@@ -1,4 +1,4 @@
-import { Balance } from "../../Balance/Balance/Balance";
+import Balance from "../../Balance/Balance";
 import styled from "styled-components";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import financebg from "../../../images/financebg.png"
@@ -41,8 +41,7 @@ const BalanceWrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
-    padding-top: 30px;
+    padding: 30px 0;
     background: #F5F6FB;
     border-bottom-left-radius: 120px;
 
@@ -162,7 +161,7 @@ const DateWrapper = styled.div`
     letter-spacing: 0.5px;
     width: 100px;
     height: 44px;
-    margin-bottom: 40px;
+    margin-top: 30px;
 
     @media(min-width: 768px){
         display: none;
@@ -304,8 +303,8 @@ export default function FinancePage(){
                     })}
                 </MobileContainer>
                 <ButtonsWrapper>
-                    <StyledLink className={pathname.includes('/spendings') ? 'active' : ''} to={'/user-finances/spendings'}>Витрати</StyledLink>
-                    <StyledLink className={pathname.includes('/incomes') ? 'active' : ''} to={'/user-finances/incomes'}>Дохід</StyledLink>
+                    <StyledLink className={pathname.includes('/spendings') ? 'active' : ''} to={'/spendings'}>Витрати</StyledLink>
+                    <StyledLink className={pathname.includes('/incomes') ? 'active' : ''} to={'/incomes'}>Дохід</StyledLink>
                 </ButtonsWrapper>
                 <Container>
                     <Outlet />

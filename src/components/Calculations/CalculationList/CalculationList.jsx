@@ -31,7 +31,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-radius: 30px;
+    border-radius: 20px;
     background-color: #fff;
     box-shadow: 0px 10px 60px 0px #AAB2C533;
     margin-left: auto;
@@ -40,6 +40,7 @@ const Container = styled.div`
 
     @media(min-width: 768px){
         width: 668px;
+        border-radius: 30px;
     }
 
     @media(min-width: 1200px){
@@ -119,6 +120,7 @@ const Category = styled.p`
     margin: 0;
 `;
 
+
 const ChartWrapper = styled.div`
     width: 100%;
     padding: 20px;
@@ -127,6 +129,7 @@ const ChartWrapper = styled.div`
 export default function CalculationList({ spendings, incomes }) {
     const [category, setCategory] = useState('incomes');
     const [selectedCategory, setSelectedCategory] = useState(null);
+
 
     const data = category === 'spendings' ? spendings : incomes;
 
@@ -167,6 +170,8 @@ export default function CalculationList({ spendings, incomes }) {
         "Спорт, хобі": sport,
         "Навчання": education,
         "Інше": other,
+        "Зп": salary,
+        "Дод. дохід": extrasalary,
     };
 
     const chartData = selectedCategory ? {
@@ -207,6 +212,9 @@ export default function CalculationList({ spendings, incomes }) {
                 </ToggleButton>
             </ToggleButtonWrapper>
             <FinanceWrapper>
+                {data.length === 0 && (
+                    <p>У вас ще немає доходів або витрат</p>
+                )}
                 {Object.entries(groupedData).map(([cat, descriptions]) => {
                     const totalAmount = Object.values(descriptions).reduce((sum, amount) => sum + amount, 0);
                     return (
