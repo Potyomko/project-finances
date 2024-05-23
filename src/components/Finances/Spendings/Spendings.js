@@ -27,9 +27,9 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import calendar from '../../../images/calendar.png'
-import deleteIcon from "../../../images/delete.png"
-import s from './Spending.module.css'
+import calendar from '../../../images/calendar.png';
+import deleteIcon from "../../../images/delete.png";
+import s from './Spending.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/selectors.js';
 import { addSpending, deleteSpending } from '../../../redux/spendings/operations.js';
@@ -40,7 +40,6 @@ function Spendings({ addExpense }) {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
-  // const [rows, setRows] = useState(Array.from({ length: 20 }).map(() => null));
   const [rows, setRows] = useState(() => {
     const savedRows = localStorage.getItem('spendingRows');
     return savedRows ? JSON.parse(savedRows) : Array.from({ length: 20 }).map(() => null);
@@ -57,19 +56,20 @@ function Spendings({ addExpense }) {
       toast.error('Будь ласка, заповніть поля');
       return;
     }
-  
+
     const newExpense = {
       description,
       category,
       email: user.email,
       amount: parseFloat(amount),
+      date: formattedDate
     };
-  
+
     dispatch(addSpending(newExpense));
     setDescription('');
     setCategory('');
     setAmount('');
-  
+
     const firstEmptyRowIndex = rows.findIndex(row => row === null);
     if (firstEmptyRowIndex !== -1) {
       const updatedRows = [...rows];
@@ -83,7 +83,7 @@ function Spendings({ addExpense }) {
     const monthlySpendings = {};
 
     rows.forEach(row => {
-      if (row) {
+      if (row && row.date) {
         const [day, month, year] = row.date.split('.');
         const monthKey = `${month}.${year}`;
         if (!monthlySpendings[monthKey]) {
@@ -210,12 +210,9 @@ function Spendings({ addExpense }) {
             ))}
           </SpendingContainer>
         </ExpenseWrapper>
-        {/* Секція "Фінанси та зведення" */}
         <TotalCost>
           <TotalCostTitle>ЗВЕДЕННЯ</TotalCostTitle>
-            {/* Перевірка, чи масив summary містить якісь елементи */}
           {summary.length > 0 ? (
-            // Перебірка масиву summary та відображення кожного елемента як TotalCostItem
             summary.map((expense, i) => (
               <TotalCostItem key={i}>
                 <span>{expense.month}</span>
