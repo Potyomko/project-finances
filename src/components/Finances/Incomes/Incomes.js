@@ -537,13 +537,14 @@ export default function Incomes(){
                     </IncomeHeader>
                     <IncomeContainer>
                         {incomes && incomes.length !== 0 && incomes.map(income => {
-                            const incomeDate = new Date(income.date)
-                            const date = incomeDate.getDate()
-                            const month = incomeDate.getMonth()
-                            const year = incomeDate.getFullYear()
+                            const originalDate = new Date(income.date);
+                            const day = String(originalDate.getDate()).padStart(2, '0');
+                            const month = String(originalDate.getMonth() + 1).padStart(2, '0');
+                            const year = originalDate.getFullYear();
+                            const formattedDate = `${day}.${month}.${year}`;
                             return(
                                 <IncomeItem key={income._id}>
-                                    <p>{`${date}.${month}.${year}`}</p>
+                                    <p>{formattedDate}</p>
                                     <p>{income.description}</p>
                                     <p>{income.category}</p>
                                     <AmountContainer className="amount">{income.amount} грн.</AmountContainer>

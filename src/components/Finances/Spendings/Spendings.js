@@ -546,13 +546,14 @@ export default function Spendings(){
                     </SpendingHeader>
                     <SpendingContainer>
                         {spendings && spendings.length !== 0 && spendings.map(spending => {
-                            const spendingDate = new Date(spending.date)
-                            const date = spendingDate.getDate()
-                            const month = spendingDate.getMonth()
-                            const year = spendingDate.getFullYear()
+                            const originalDate = new Date(spending.date);
+                            const day = String(originalDate.getDate()).padStart(2, '0');
+                            const month = String(originalDate.getMonth() + 1).padStart(2, '0');
+                            const year = originalDate.getFullYear();
+                            const formattedDate = `${day}.${month}.${year}`;
                             return(
                                 <SpendingItem key={spending._id}>
-                                    <p>{`${date}.${month}.${year}`}</p>
+                                    <p>{formattedDate}</p>
                                     <p>{spending.description}</p>
                                     <p>{spending.category}</p>
                                     <AmountContainer className="amount">- {spending.amount} грн.</AmountContainer>
