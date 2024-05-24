@@ -15,14 +15,8 @@ import Utility from "./svgs/Utility";
 import Sport from "./svgs/Sport";
 import Education from "./svgs/Education";
 import Other from "./svgs/Ohter";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Tooltip,
-  Legend
-);
+import { BarElement, CategoryScale, Legend, LinearScale, Tooltip } from "chart.js";
+import { Bar, Chart } from "react-chartjs-2";
 
 const Container = styled.div`
     width: 282px;
@@ -128,6 +122,14 @@ const ChartWrapper = styled.div`
 
 export default function CalculationList({ spendings, incomes }) {
 
+    Chart.register(
+        CategoryScale,
+        LinearScale,
+        BarElement,
+        Tooltip,
+        Legend
+    );
+
     const [category, setCategory] = useState('spendings');
     const [selectedCategory, setSelectedCategory] = useState(undefined)
 
@@ -148,10 +150,6 @@ export default function CalculationList({ spendings, incomes }) {
         acc[item.category][item.description] += item.amount;
         return acc;
     }, {});
-
-    const handleItemClick = (cat) => {
-        setSelectedCategory(cat);
-    };
 
     const toggleButtonClick = () => {
         setCategory((prevCategory) => prevCategory === 'spendings' ? 'incomes' : 'spendings');
