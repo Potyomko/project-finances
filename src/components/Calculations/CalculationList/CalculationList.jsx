@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import leftbtn from "../../../images/leftbtn.png"
 import rightbtn from "../../../images/rightbtn.png"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Salary from './svgs/Salary'
 import ExtraSalary from './svgs/ExtraSalary'
 import Products from "./svgs/Products";
@@ -15,8 +15,16 @@ import Utility from "./svgs/Utility";
 import Sport from "./svgs/Sport";
 import Education from "./svgs/Education";
 import Other from "./svgs/Ohter";
-import { BarElement, CategoryScale, Legend, LinearScale, Tooltip } from "chart.js";
-import { Bar, Chart } from "react-chartjs-2";
+import { BarElement, CategoryScale, Legend, LinearScale, Tooltip, Chart as ChartJS } from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Tooltip,
+    Legend
+);
 
 const Container = styled.div`
     width: 282px;
@@ -114,26 +122,25 @@ const Category = styled.p`
     margin: 0;
 `;
 
-
 const ChartWrapper = styled.div`
     width: 100%;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
-export default function CalculationList({ spendings, incomes }) {
-
-    Chart.register(
-        CategoryScale,
-        LinearScale,
-        BarElement,
-        Tooltip,
-        Legend
-    );
-
-    const [category, setCategory] = useState('spendings');
-    const [selectedCategory, setSelectedCategory] = useState(undefined)
+export default function CalculationList({ spendings, incomes, month }) {
+    const [category, setCategory] = useState('incomes');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [item, setItem] = useState(undefined)
 
     const data = category === 'spendings' ? spendings : incomes;
+
+    useEffect(() => {
+        setSelectedCategory(null)
+        setItem(undefined)
+    }, [month])
 
     if (!Array.isArray(data)) {
         console.error("Data is not an array", data);
@@ -150,6 +157,11 @@ export default function CalculationList({ spendings, incomes }) {
         acc[item.category][item.description] += item.amount;
         return acc;
     }, {});
+
+    const handleItemClick = (cat) => {
+        setSelectedCategory(cat);
+        setItem(cat)
+    };
 
     const toggleButtonClick = () => {
         setCategory((prevCategory) => prevCategory === 'spendings' ? 'incomes' : 'spendings');
@@ -172,30 +184,34 @@ export default function CalculationList({ spendings, incomes }) {
         "Інше": Other,
     }
 
-    const handleSelectedChange = (category) => {
-        setSelectedCategory((prevSelected) => prevSelected === category ? undefined : category)
+    let chartData;
+    let chartOptions;
+
+    if(data.length !== 0 && groupedData[selectedCategory] !== undefined){
+        chartData = selectedCategory ? {
+            labels: Object.keys(groupedData[selectedCategory]),
+            datasets: [
+                {
+                    label: selectedCategory,
+                    data: Object.values(groupedData[selectedCategory]),
+                    backgroundColor: '#FF751D',
+                    // &:nth-child(odd): '#FFDAC0', 
+                    borderColor: '#FF751D',
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    width: 38,
+                },
+            ],
+        } : null;
+    
+        chartOptions = {
+            plugins: {
+                title: {
+                    display: false,
+                },
+            },
+        };
     }
-
-    const chartData = selectedCategory ? {
-        labels: Object.keys(groupedData[selectedCategory]),
-        datasets: [
-            {
-                label: selectedCategory,
-                data: Object.values(groupedData[selectedCategory]),
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-            },
-        ],
-    } : null;
-
-    const chartOptions = {
-        plugins: {
-            title: {
-                display: false,
-            },
-        },
-    };
 
     return (
         <Container>
@@ -217,18 +233,19 @@ export default function CalculationList({ spendings, incomes }) {
                 {data.length === 0 && (
                     <p>У вас ще немає доходів або витрат</p>
                 )}
-                {Object.entries(groupedData).map(([cat, amount]) => {
+                {Object.entries(groupedData).map(([cat, descriptions]) => {
+                    const totalAmount = Object.values(descriptions).reduce((sum, amount) => sum + amount, 0);
                     const Icon = categories[cat]
-                    return(
-                        <FinanceItem onClick={() => handleSelectedChange(cat)} key={cat}>
-                            <Amount>{amount}</Amount>
-                            <Icon selected={selectedCategory === cat} />
+                    return (
+                        <FinanceItem key={cat} onClick={() => handleItemClick(cat)}>
+                            <Amount>{totalAmount}</Amount>
+                            <Icon selected={item === cat} />
                             <Category>{cat}</Category>
                         </FinanceItem>
-                    )
+                    );
                 })}
             </FinanceWrapper>
-            {selectedCategory && (
+            {selectedCategory && data.length !== 0 && groupedData[selectedCategory] !== undefined && (
                 <ChartWrapper>
                     <Bar data={chartData} options={chartOptions} />
                 </ChartWrapper>
