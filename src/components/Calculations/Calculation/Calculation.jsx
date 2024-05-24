@@ -15,6 +15,7 @@ export const Calculation = () => {
     const spendings = useSelector(getSpendings);
     const navigate = useNavigate()
     const [date, setDate] = useState(new Date())
+    const [month, setMonth] = useState(undefined)
 
     const handleButtonClick = () => {
         navigate('/incomes')
@@ -25,6 +26,7 @@ export const Calculation = () => {
     };
 
     const handlePrevMonth = () => {
+        setMonth(new Date())
         setDate(prevDate => {
             const newDate = new Date(prevDate);
             newDate.setMonth(prevDate.getMonth() - 1);
@@ -33,6 +35,7 @@ export const Calculation = () => {
     };
 
     const handleNextMonth = () => {
+        setMonth(new Date())
         setDate(prevDate => {
             const newDate = new Date(prevDate);
             newDate.setMonth(prevDate.getMonth() + 1);
@@ -85,7 +88,7 @@ export const Calculation = () => {
                 <Stick></Stick>
                 <IncomesP>Доходи:  <IncomesNum> + {incomesAmount} грн.</IncomesNum></IncomesP>
             </Box>
-            <CalculationList spendings={sortedSpendings} incomes={sortedIncomes} />
+            <CalculationList spendings={sortedSpendings} incomes={sortedIncomes} month={month} />
         </Wrapper>
     )
 }
