@@ -16,6 +16,14 @@ import Sport from "./svgs/Sport";
 import Education from "./svgs/Education";
 import Other from "./svgs/Ohter";
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend
+);
+
 const Container = styled.div`
     width: 282px;
     padding: 20px 0;
@@ -65,7 +73,7 @@ const ToggleButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const FinanceWrapper = styled.div`
     width: 282px;
@@ -78,7 +86,7 @@ const FinanceWrapper = styled.div`
     @media(min-width: 768px){
         width: 613px;
     }
-`
+`;
 
 const FinanceItem = styled.div`
     width: 85px;
@@ -88,7 +96,7 @@ const FinanceItem = styled.div`
     align-items: center;
     gap: 5px;
     cursor: pointer;
-`
+`;
 
 const Amount = styled.p`
     font-family: Roboto, sans-serif;
@@ -99,7 +107,7 @@ const Amount = styled.p`
     color: #52555F;
     text-align: center;
     margin: 0;
-`
+`;
 
 const Category = styled.p`
     font-family: Roboto, sans-serif;
@@ -110,13 +118,19 @@ const Category = styled.p`
     color: #52555F;
     text-align: center;
     margin: 0;
-`
+`;
 
-export default function CalculationList({spendings, incomes}){
+
+const ChartWrapper = styled.div`
+    width: 100%;
+    padding: 20px;
+`;
+
+export default function CalculationList({ spendings, incomes }) {
 
     const [category, setCategory] = useState('spendings');
     const [selectedCategory, setSelectedCategory] = useState(undefined)
-    
+
     const data = category === 'spendings' ? spendings : incomes;
 
     if (!Array.isArray(data)) {
@@ -126,31 +140,23 @@ export default function CalculationList({spendings, incomes}){
 
     const groupedData = data.reduce((acc, item) => {
         if (!acc[item.category]) {
-            acc[item.category] = 0;
+            acc[item.category] = {};
         }
-        acc[item.category] += item.amount;
+        if (!acc[item.category][item.description]) {
+            acc[item.category][item.description] = 0;
+        }
+        acc[item.category][item.description] += item.amount;
         return acc;
     }, {});
-    
-    const toggleButtonClick = () => {
-        setCategory((prevCategory) => prevCategory === 'spendings' ? 'incomes' : 'spendings');
+
+    const handleItemClick = (cat) => {
+        setSelectedCategory(cat);
     };
 
-    // const categoryIcons = {
-    //     "Продукти": products,
-    //     "Алкоголь": alcohol,
-    //     "Розваги": entertainment,
-    //     "Здоров'я": health,
-    //     "Транспорт": transport,
-    //     "Все для дому": house,
-    //     "Техніка": tools,
-    //     "Комуналка, зв'язок": utility,
-    //     "Спорт, хобі": sport,
-    //     "Навчання": education,
-    //     "Інше": other,
-    //     "Зп": salary,
-    //     "Дод. дохід": extrasalary,
-    // };
+    const toggleButtonClick = () => {
+        setCategory((prevCategory) => prevCategory === 'spendings' ? 'incomes' : 'spendings');
+        setSelectedCategory(null);
+    };
 
     const categories = { 
         'Зп': Salary,
@@ -172,21 +178,38 @@ export default function CalculationList({spendings, incomes}){
         setSelectedCategory((prevSelected) => prevSelected === category ? undefined : category)
     }
 
-    return(
+    const chartData = selectedCategory ? {
+        labels: Object.keys(groupedData[selectedCategory]),
+        datasets: [
+            {
+                label: selectedCategory,
+                data: Object.values(groupedData[selectedCategory]),
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            },
+        ],
+    } : null;
+
+    const chartOptions = {
+        plugins: {
+            title: {
+                display: false,
+            },
+        },
+    };
+
+    return (
         <Container>
             <ToggleButtonWrapper>
                 <ToggleButton onClick={toggleButtonClick}>
                     <img src={leftbtn} alt="arrow" />
                 </ToggleButton>
                 {category === 'spendings' && (
-                    <ToggleButtonText>
-                        ВИТРАТИ
-                    </ToggleButtonText>
+                    <ToggleButtonText>ВИТРАТИ</ToggleButtonText>
                 )}
                 {category === 'incomes' && (
-                    <ToggleButtonText>
-                        ДОХОДИ
-                    </ToggleButtonText>
+                    <ToggleButtonText>ДОХОДИ</ToggleButtonText>
                 )}
                 <ToggleButton onClick={toggleButtonClick}>
                     <img src={rightbtn} alt="arrow" />
@@ -207,6 +230,11 @@ export default function CalculationList({spendings, incomes}){
                     )
                 })}
             </FinanceWrapper>
+            {selectedCategory && (
+                <ChartWrapper>
+                    <Bar data={chartData} options={chartOptions} />
+                </ChartWrapper>
+            )}
         </Container>
-    )
+    );
 }
