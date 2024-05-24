@@ -16,9 +16,6 @@ export const Calculation = () => {
     const navigate = useNavigate()
     const [date, setDate] = useState(new Date())
 
-    const spendingAmount = spendings.reduce((total, current) => { return total += current.amount }, 0);
-    const incomesAmount = incomes.reduce((total, current) => { return total += current.amount }, 0);
-
     const handleButtonClick = () => {
         navigate('/incomes')
     }
@@ -54,6 +51,9 @@ export const Calculation = () => {
 
     const sortedSpendings = filterByMonth(spendings, date);
     const sortedIncomes = filterByMonth(incomes, date);
+
+    const spendingAmount = sortedSpendings.reduce((total, current) => { return total += current.amount }, 0);
+    const incomesAmount = sortedIncomes.reduce((total, current) => { return total += current.amount }, 0);
 
     return (
         <Wrapper>
