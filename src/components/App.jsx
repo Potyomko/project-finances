@@ -21,7 +21,7 @@ export const App = () => {
       dispatch(getSpendings({email: user.email}))
       dispatch(getBalance({email: user.email}))
     }
-  }, [dispatch, isLoggedIn, user.email])
+  }, [dispatch, isLoggedIn])
 
   return (
     <>
