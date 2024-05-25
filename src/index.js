@@ -5,7 +5,7 @@ import './index.css';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './redux/store';
 import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
+import { BrowserRouter, RouterProvider } from 'react-router-dom';
 import {router} from './router'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -14,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <PersistGate persistor={persistor}>
       <Provider store={store}>
         <RouterProvider router={router}>
-          <App />
+          <BrowserRouter basename="/project-finances">
+            <App />
+          </BrowserRouter>
         </RouterProvider>
       </Provider>
     </PersistGate>
