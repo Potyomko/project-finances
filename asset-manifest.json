@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.1555eae2.css",
-    "main.js": "/static/js/main.fd8fe59f.js",
-    "static/media/heroBg.png": "/static/media/heroBg.449514bedd10b314e1a3.png",
-    "static/media/financebg.png": "/static/media/financebg.290f7d1086e158a4e855.png",
-    "static/media/heroBg2.png": "/static/media/heroBg2.b6d39ba12d7a66e97185.png",
-    "index.html": "/index.html",
-    "main.1555eae2.css.map": "/static/css/main.1555eae2.css.map",
-    "main.fd8fe59f.js.map": "/static/js/main.fd8fe59f.js.map"
+    "main.css": "/potyomko.github.io/project-finances/static/css/main.1555eae2.css",
+    "main.js": "/potyomko.github.io/project-finances/static/js/main.73f97122.js",
+    "static/media/heroBg.png": "/potyomko.github.io/project-finances/static/media/heroBg.449514bedd10b314e1a3.png",
+    "static/media/financebg.png": "/potyomko.github.io/project-finances/static/media/financebg.290f7d1086e158a4e855.png",
+    "static/media/heroBg2.png": "/potyomko.github.io/project-finances/static/media/heroBg2.b6d39ba12d7a66e97185.png",
+    "index.html": "/potyomko.github.io/project-finances/index.html",
+    "main.1555eae2.css.map": "/potyomko.github.io/project-finances/static/css/main.1555eae2.css.map",
+    "main.73f97122.js.map": "/potyomko.github.io/project-finances/static/js/main.73f97122.js.map"
   },
   "entrypoints": [
     "static/css/main.1555eae2.css",
-    "static/js/main.fd8fe59f.js"
+    "static/js/main.73f97122.js"
   ]
 }
