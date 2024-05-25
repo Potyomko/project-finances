@@ -28,3 +28,7 @@ export const deleteIncome = createAsyncThunk('incomes/deleteIncome', async (body
         throw new Error(error)
     }
 })
+
+export const addCat = createAsyncThunk('incomes/addCat', async (body) => {
+    return body;
+})

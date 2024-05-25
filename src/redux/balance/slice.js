@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { changeBalance, getBalance } from "./operations";
 import { logout } from "../../redux/auth/operations";
 import { addIncome, deleteIncome } from "../../redux/incomes/operations";
+import { addSpending, deleteSpending } from "../../redux/spendings/operations";
 
 const slice = createSlice({
     name: 'balanceSlice',
@@ -56,6 +57,19 @@ const slice = createSlice({
                 state.isLoading = false;
                 state.error = action.error;
             })
+            .addCase(addSpending.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(addSpending.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.balance = action.payload.user.balance
+            })
+            .addCase(addSpending.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error;
+            })
             .addCase(deleteIncome.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;
@@ -66,6 +80,19 @@ const slice = createSlice({
                 state.balance = action.payload.user.balance
             })
             .addCase(deleteIncome.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error;
+            })
+            .addCase(deleteSpending.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(deleteSpending.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.balance = action.payload.user.balance
+            })
+            .addCase(deleteSpending.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.error;
             })

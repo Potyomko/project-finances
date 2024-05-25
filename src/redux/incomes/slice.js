@@ -5,6 +5,7 @@ import { logout } from "../../redux/auth/operations";
 const slice = createSlice({
     name: 'incomesSlice',
     initialState: {
+        chosenCat: '',
         incomes: [],
         error: null,
         isLoading: false,
@@ -55,6 +56,11 @@ const slice = createSlice({
                 state.error = null;
                 state.incomes = []
             })
+            // .addCase(logout.fulfilled, (state, action) => {
+            //     state.isLoading = false;
+            //     state.error = null;
+            //     state.incomes = []
+            // })
     }
 })
 
